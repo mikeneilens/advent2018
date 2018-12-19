@@ -4,7 +4,6 @@ fun main(args: Array<String>) {
     val listOfLetters = readFile()
     val listOfListOfLetters = listOfLetters.map{ string -> string.toCharArray().map{it.toString()}}
 
-    println(listOfListOfLetters.map{getCount(it)})
     val containsTwoOrThrees = listOfListOfLetters.map{getCount(it)}
     val twos = containsTwoOrThrees.fold(0) { acc, pair -> acc + pair.first}
     val threes = containsTwoOrThrees.fold(0) { acc, pair -> acc + pair.second}
