@@ -12,9 +12,6 @@ fun main(args: Array<String>) {
     println("nunber of overlaps:$number")
 }
 
-class Origin(val x:Int, val y:Int) {
-    val key = 10000 * y + x
-}
 
 fun overlay(map1:HashMap<Int, String>, map2:HashMap<Int, String>):HashMap<Int, String> {
     var map = HashMap<Int, String>()
@@ -32,12 +29,16 @@ class Claim(val pattern:String, val x:Int, val y:Int, val width:Int, val length:
         var map = HashMap<Int, String>()
         for (i in 0..(width -1)) {
             for (j in 0..(length -1)) {
-                map.put(Origin(x + i,y + j).key,pattern)
+                map.put(createKey(x + i,y + j),pattern)
             }
         }
         return map
     }
-    
+
+    private fun createKey( x:Int,  y:Int):Int {
+        return  10000 * y + x
+    }
+
     companion object {
         fun creator(patternData:String):Claim{
             val splitPatternData = patternData.split("#","@")
