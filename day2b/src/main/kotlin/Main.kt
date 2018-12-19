@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
     val size = listOfLetters[0].length
 
     for (i in 0..(size - 1)) {
-        val maskedList = listOfLetters.map{replaceCharAt(i,it)}
+        val maskedList = listOfLetters.map{it.replaceCharAt(i)}
         val key  = getMatchingAdjacentStrings(maskedList.sorted())
         if (!key.isEmpty()) {
             println(key.replace("*",""))
@@ -21,10 +21,8 @@ fun readFile():List<String> {
     return lineList
 }
 
-fun replaceCharAt(position:Int, string:String):String {
-    val firstChars = string.take(position)
-    val remainder  = string.drop(position + 1)
-    return "$firstChars*$remainder"
+fun String.replaceCharAt(position:Int):String {
+    return "${this.take(position)}*${this.drop(position + 1)}"
 }
 
 fun getMatchingAdjacentStrings(  letters:List<String>):String {

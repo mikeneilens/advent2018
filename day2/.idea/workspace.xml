@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2934e03-8595-4a28-b061-99e2af6f8c01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day2b/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day1-swift/day1.playground/Contents.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../day1-swift/day1.playground/Contents.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day1/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day1/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day1/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day1/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day2b/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day2b/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day2b/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day2b/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day2b/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day2b/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -483,7 +467,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545245836378" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545246498707" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
