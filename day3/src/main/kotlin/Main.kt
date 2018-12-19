@@ -13,10 +13,10 @@ fun main(args: Array<String>) {
 }
 
 
-fun overlay(map1:HashMap<Int, String>, map2:HashMap<Int, String>):HashMap<Int, String> {
+fun overlay(currentMap:HashMap<Int, String>, newMap:HashMap<Int, String>):HashMap<Int, String> {
     var map = HashMap<Int, String>()
-    map1.forEach { key, value -> if (map2.containsKey(key)) map.put(key,"X") else map.put(key, value)   }
-    map2.forEach { key, value -> if (map1.containsKey(key)) map.put(key,"X") else map.put(key, value)   }
+    newMap.forEach { key, value -> if (currentMap.containsKey(key)) map.put(key,"X") else map.put(key, value)   }
+    currentMap.forEach { key, value -> if (!newMap.containsKey(key)) map.put(key, value)   }
     return map
 }
 
