@@ -20,7 +20,7 @@ let numbers = readFile()
 //let numbers = [+7, +7, -2, -7, -4]
 let total = numbers.reduce(0,processor)
 print("The total is \(total)")
-
+/*
 var listOfFrequencies = Array<Int>()
 var frequency:Int = 0
     
@@ -32,6 +32,6 @@ while (!listOfFrequencies.contains(frequency)) {
     mutableNumbers = Array(mutableNumbers.dropFirst()) + [head]
 }
 print("frequency is \(frequency)")
-
+*/
 let frequency2 = getRepeatingFrequency( listOfInts:numbers, frequency:0, listOfFrequencies:Array<Int>())
 print("frequency with recursion is \(frequency2)")

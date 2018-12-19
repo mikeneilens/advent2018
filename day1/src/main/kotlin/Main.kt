@@ -7,7 +7,6 @@ fun main(args: Array<String>) {
 
     var listOfFrequencies = mutableListOf<Int>()
     var frequency = 0
-
     var mutableNumbers = numbers
     while (!listOfFrequencies.contains(frequency)) {
         listOfFrequencies.add(frequency)
@@ -15,7 +14,6 @@ fun main(args: Array<String>) {
         frequency += head
         mutableNumbers = mutableNumbers.drop(1) + head
     }
-    println("frequency is $frequency")
 
     //this runs out of stack!!!
     val frequency2 = getRepeatingFrequency(numbers, 0, listOf())
