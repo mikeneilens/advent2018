@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     val records = readFile()
     var map = HashMap<Int, String>()
     records.forEach{
-        val claim = Claim.creator(it)
+        val claim = Claim.createFrom(it)
         map = overlay(map, claim.getMap())
     }
     val overlaps = map.map{ if (it.value == "X") 1 else 0  }
@@ -40,7 +40,7 @@ class Claim(val pattern:String, val x:Int, val y:Int, val width:Int, val length:
     }
 
     companion object {
-        fun creator(patternData:String):Claim{
+        fun createFrom(patternData:String):Claim{
             val splitPatternData = patternData.split("#","@")
             val pattern = splitPatternData[1]
             val origin = splitPatternData[2].split(":")[0]
