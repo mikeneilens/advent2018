@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
     records.forEach{
         val claim = Claim.createFrom(it)
         if (claim.isIntactOn(map)) {
-            println(claim.text())
+            println("${claim.text()} does not overlap")
         }
     }
 
