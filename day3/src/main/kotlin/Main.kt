@@ -49,8 +49,8 @@ class Claim(val pattern:String, val x:Int, val y:Int, val width:Int, val length:
 
     fun isIntactOn(map:HashMap<Int, String>):Boolean {
         val mapForClaim = getMap()
-        val locationsAsArray = mapForClaim.map{map[it.key] == it.value }
-        return locationsAsArray.fold(true){acc ,i -> acc.and(i) }
+        val patternIsOnMapAsArray = mapForClaim.map{map[it.key] == it.value }
+        return patternIsOnMapAsArray.fold(true){acc ,i -> acc.and(i) }
     }
 
     companion object {
