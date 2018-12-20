@@ -35,7 +35,6 @@ fun main(args: Array<String>) {
 
 class GuardActivity(val id:String, val date:String, val minute:Int, val event:String) {
 
-//    var text = "$id $date $minute $event"
     companion object {
         fun create(observation:String, nextObservation:String, prevGuard:String):GuardActivity {
             val splitData = observation.split(" ")
@@ -92,20 +91,23 @@ fun createMapOfActivities(guardActivities: List<GuardActivity>, activityMap:Acti
 
     val currentGuardActivity = guardActivities.first()
     val remainder = guardActivities.drop(1)
+
     if (remainder.isEmpty()) {
         val updatedActivityMap = if (currentGuardActivity.event == "falls") addEvent(59 - currentGuardActivity.minute + 1, "#", activityMap)
         else addEvent(59 - currentGuardActivity.minute + 1, ".", activityMap)
         return listOfActivityMaps + updatedActivityMap
     }
+
     val nextGuardActivity = remainder.first()
     val endMinute = if ((currentGuardActivity.date != nextGuardActivity.date)|| (currentGuardActivity.id != nextGuardActivity.id))  59
                     else nextGuardActivity.minute - 1
     val startMinute = if (currentGuardActivity.event == "Begins Shift") 0
                       else currentGuardActivity.minute
-    val activityMapToUpdate =  if (currentGuardActivity.event == "Begins Shift") ActivityMap(currentGuardActivity.id, currentGuardActivity.date,listOf())
-                            else activityMap
+    val activityMapToUpdate =   if (currentGuardActivity.event == "Begins Shift") ActivityMap(currentGuardActivity.id, currentGuardActivity.date,listOf())
+                                else activityMap
     val updatedActivityMap = if (currentGuardActivity.event == "falls") addEvent(endMinute - startMinute + 1, "#", activityMapToUpdate)
                              else addEvent(endMinute - startMinute + 1, ".", activityMapToUpdate)
+
     return if ((currentGuardActivity.event == "Begins Shift")&&(!activityMap.id.isEmpty()))
         createMapOfActivities(remainder,updatedActivityMap, listOfActivityMaps + activityMap)
     else
@@ -113,20 +115,15 @@ fun createMapOfActivities(guardActivities: List<GuardActivity>, activityMap:Acti
 }
 fun obtainLaziestGuard(mapOfActivities:List<ActivityMap>, laziestGuard:String, previousGuard:String, minutesSleeping:Int, mostMinutesSleeping:Int):String{
     if (mapOfActivities.isEmpty()) return laziestGuard
+
     val head = mapOfActivities.first()
     val remainder = mapOfActivities.drop(1)
-    val totalMinutesSleeping =  if (head.id == previousGuard)
-                                    minutesSleeping + head.minutesSleeping
-                                else
-                                    head.minutesSleeping
-    return if ((totalMinutesSleeping) > mostMinutesSleeping) {
-        println("${head.id} $totalMinutesSleeping previous $mostMinutesSleeping new $totalMinutesSleeping ")
-        obtainLaziestGuard(remainder,head.id,head.id,totalMinutesSleeping,totalMinutesSleeping )
-    }
-    else {
-        println("${head.id} $totalMinutesSleeping $mostMinutesSleeping new $totalMinutesSleeping ")
-        obtainLaziestGuard(remainder,laziestGuard, head.id,totalMinutesSleeping,mostMinutesSleeping )
-    }
+    val totalMinutesSleeping =  if (head.id == previousGuard) minutesSleeping + head.minutesSleeping
+                                else  head.minutesSleeping
+
+    return  if ((totalMinutesSleeping) > mostMinutesSleeping) obtainLaziestGuard(remainder,head.id,head.id,totalMinutesSleeping,totalMinutesSleeping )
+            else obtainLaziestGuard(remainder,laziestGuard, head.id,totalMinutesSleeping,mostMinutesSleeping )
+
 }
 fun obtainLaziestMinute(mapOfActivities: List<ActivityMap>):Pair<Int,Int> {
     var laziestMinute = 0
