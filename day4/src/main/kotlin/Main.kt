@@ -108,10 +108,10 @@ fun createMapOfActivities(guardActivities: List<GuardActivity>, activityMap:Acti
     val updatedActivityMap = if (currentGuardActivity.event == "falls") addEvent(endMinute - startMinute + 1, "#", activityMapToUpdate)
                              else addEvent(endMinute - startMinute + 1, ".", activityMapToUpdate)
 
-    return if ((currentGuardActivity.event == "Begins Shift")&&(!activityMap.id.isEmpty()))
-        createMapOfActivities(remainder,updatedActivityMap, listOfActivityMaps + activityMap)
-    else
-        createMapOfActivities(remainder,updatedActivityMap, listOfActivityMaps)
+    return  if ((currentGuardActivity.event == "Begins Shift") && (!activityMap.id.isEmpty()))
+                createMapOfActivities(remainder,updatedActivityMap, listOfActivityMaps + activityMap)
+            else
+                createMapOfActivities(remainder,updatedActivityMap, listOfActivityMaps)
 }
 fun obtainLaziestGuard(mapOfActivities:List<ActivityMap>, laziestGuard:String, previousGuard:String, minutesSleeping:Int, mostMinutesSleeping:Int):String{
     if (mapOfActivities.isEmpty()) return laziestGuard
