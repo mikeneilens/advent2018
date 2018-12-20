@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2934e03-8595-4a28-b061-99e2af6f8c01" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day2b/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day2b/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/Claim$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/Claim$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/Claim.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/Claim.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
@@ -24,6 +30,7 @@
     <session id="-825339915">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="2" />

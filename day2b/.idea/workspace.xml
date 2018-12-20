@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20ae58d1-b1c9-42ff-8523-92ac40ea5c1c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../day2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/Claim$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/Claim$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/Claim.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/Claim.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt$overlay$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/out/production/classes/MainKt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day3/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day3/src/main/kotlin/Main.kt" afterDir="false" />
     </list>

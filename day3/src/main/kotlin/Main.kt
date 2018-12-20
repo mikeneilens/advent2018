@@ -10,8 +10,16 @@ fun main(args: Array<String>) {
     val overlaps = map.map{ if (it.value == "X") 1 else 0  }
     val number = overlaps.fold(0,{acc, i -> acc + i})
     println("nunber of overlaps:$number")
-}
 
+    records.forEach{
+        val claim = Claim.createFrom(it)
+        if (claim.isIntactOn(map)) {
+            println(claim.text())
+        }
+    }
+
+
+}
 
 fun overlay(currentMap:HashMap<Int, String>, newMap:HashMap<Int, String>):HashMap<Int, String> {
     var map = HashMap<Int, String>()
@@ -20,9 +28,13 @@ fun overlay(currentMap:HashMap<Int, String>, newMap:HashMap<Int, String>):HashMa
     return map
 }
 
+fun createKey( x:Int,  y:Int):Int {
+    return  10000 * y + x
+}
+
 class Claim(val pattern:String, val x:Int, val y:Int, val width:Int, val length:Int){
     fun text():String  {
-        return "pattern:$pattern x:$x y:$y width:$width length:$length"
+        return "#$pattern @ $x,$y : ${width}x$length"
     }
     
     fun getMap():HashMap<Int, String> {
@@ -35,14 +47,16 @@ class Claim(val pattern:String, val x:Int, val y:Int, val width:Int, val length:
         return map
     }
 
-    private fun createKey( x:Int,  y:Int):Int {
-        return  10000 * y + x
+    fun isIntactOn(map:HashMap<Int, String>):Boolean {
+        val mapForClaim = getMap()
+        val locationsAsArray = mapForClaim.map{map[it.key] == it.value }
+        return locationsAsArray.fold(true){acc ,i -> acc.and(i) }
     }
 
     companion object {
         fun createFrom(patternData:String):Claim{
             val splitPatternData = patternData.split("#","@")
-            val pattern = splitPatternData[1]
+            val pattern = splitPatternData[1].removeSuffix(" ")
             val origin = splitPatternData[2].split(":")[0]
             val size = splitPatternData[2].split(":")[1]
             val x = origin.split(",")[0].removePrefix(" ").toInt()
