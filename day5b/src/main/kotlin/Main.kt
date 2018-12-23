@@ -6,8 +6,7 @@ fun main(args: Array<String>) {
     val listOfLetters = readFile().first().toCharArray().map{it.toString()}
     //val listOfLetters = "dabAcCaCBAcCcaDA".toCharArray().map{it.toString()}
 
-    val results = unitTypes.map{
-        val unitType = it
+    val results = unitTypes.map{ unitType ->
         val listOfLettersFiltered = listOfLetters.filter { (it.toLowerCase() != unitType) }
         process(listOfLettersFiltered, listOf(),false).size
     }
@@ -26,19 +25,19 @@ fun shouldRemoveLetters(firstCharacter:String, secondCharacter:String):Boolean {
 
 tailrec fun process(listOfLetters:List<String>, newListOfLetters:List<String>, lettersRemoved:Boolean):List<String>{
     if (listOfLetters.size <= 1)  {
-        if (!lettersRemoved) {
+        return if (!lettersRemoved) {
             println( (newListOfLetters + listOfLetters).size)
-            return newListOfLetters + listOfLetters
+            newListOfLetters + listOfLetters
         } else {
-            return process(newListOfLetters + listOfLetters,listOf(),false)
+            process(newListOfLetters + listOfLetters,listOf(),false)
         }
     } else {
         val firstLetter = listOfLetters[0]
         val secondLetter = listOfLetters[1]
-        if (shouldRemoveLetters(firstLetter, secondLetter)) {
-            return process(listOfLetters.drop(2), newListOfLetters, lettersRemoved.or(true))
+        return if (shouldRemoveLetters(firstLetter, secondLetter)) {
+            process(listOfLetters.drop(2), newListOfLetters, lettersRemoved.or(true))
         } else {
-            return process(listOfLetters.drop(1), newListOfLetters + firstLetter, lettersRemoved.or(false))
+            process(listOfLetters.drop(1), newListOfLetters + firstLetter, lettersRemoved.or(false))
         }
     }
 }
