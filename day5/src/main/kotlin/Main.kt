@@ -17,20 +17,19 @@ fun shouldRemoveLetters(firstCharacter:String, secondCharacter:String):Boolean {
 }
 
 tailrec fun process(listOfLetters:List<String>, newListOfLetters:List<String>, lettersRemoved:Boolean ):List<String>{
-    if (listOfLetters.size <= 1)  {
+    return if (listOfLetters.size <= 1)  {
         if (!lettersRemoved) {
-            return newListOfLetters + listOfLetters
+            newListOfLetters + listOfLetters
         } else {
-            println(newListOfLetters.size)
-            return process(newListOfLetters + listOfLetters,listOf(),false)
+            process(newListOfLetters + listOfLetters,listOf(),false)
         }
     } else {
         val firstLetter = listOfLetters[0]
         val secondLetter = listOfLetters[1]
         if (shouldRemoveLetters(firstLetter, secondLetter)) {
-            return process(listOfLetters.drop(2), newListOfLetters, lettersRemoved.or(true))
+            process(listOfLetters.drop(2), newListOfLetters, lettersRemoved.or(true))
         } else {
-            return process(listOfLetters.drop(1), newListOfLetters + firstLetter, lettersRemoved.or(false))
+            process(listOfLetters.drop(1), newListOfLetters + firstLetter, lettersRemoved.or(false))
         }
     }
 }
