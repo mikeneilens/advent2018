@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9e5cb94-e2bd-476e-b4d7-5cbf3ca7e3e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day9/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
