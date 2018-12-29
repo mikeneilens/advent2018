@@ -5,9 +5,9 @@ fun main(args: Array<String>) {
 
     var listOfPoints = listOfData.map { line -> Point.createFrom(line) }
 
-    (0..50000).forEach { _ ->
+    (1..50000).forEach { seconds ->
         listOfPoints = listOfPoints.map{point -> point.move()}
-        drawList(listOfPoints)
+        drawList(listOfPoints, seconds)
     }
 }
 
@@ -35,14 +35,15 @@ class Point(val position:Position, private val velocity:Velocity) {
 class Position(val x:Int, val y:Int)
 class Velocity(val x:Int, val y:Int)
 
-fun drawList(list:List<Point>) {
-    val sortedByXList = list.sortedBy { point -> point.position.x }
-    val sortedByYList = list.sortedBy { point -> point.position.y }
-    val minX = sortedByXList.first().position.x
-    val maxX = sortedByXList.last().position.x
-    val minY = sortedByYList.first().position.y
-    val maxY = sortedByYList.last().position.y
-    if (pointsContainClusteredPoints(list)) {
+fun drawList(list:List<Point>, seconds:Int) {
+    if (listContainClusteredPoints(list)) {
+        val sortedByXList = list.sortedBy { point -> point.position.x }
+        val sortedByYList = list.sortedBy { point -> point.position.y }
+        val minX = sortedByXList.first().position.x
+        val maxX = sortedByXList.last().position.x
+        val minY = sortedByYList.first().position.y
+        val maxY = sortedByYList.last().position.y
+        println("Image at $seconds seconds")
         (minY..maxY).forEach { y ->
             var output = ""
             (minX..maxX).forEach { x ->
@@ -53,7 +54,7 @@ fun drawList(list:List<Point>) {
     }
 }
 
-fun pointsContainClusteredPoints(list:List<Point>):Boolean {
+fun listContainClusteredPoints(list:List<Point>):Boolean {
     var mostPointsFound = 0
     list.forEach{point ->
         var pointsFound = 0
