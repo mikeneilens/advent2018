@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fd484db-4bac-4625-b427-7e3fa7f5370d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day9b/src/main/kotlin/Node.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day10/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day10/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day9b/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day9b/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -105,7 +98,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546036498303" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546092264227" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -211,7 +204,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.271581" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.271581" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39952996" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
