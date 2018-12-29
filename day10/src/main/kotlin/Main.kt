@@ -11,12 +11,15 @@ fun main(args: Array<String>) {
     }
 }
 
-class Point(val position:Position, private val velocity:Velocity) {
+class Point(val position: Vector, private val velocity: Vector) {
     fun move():Point{
-        val newX = position.x + velocity.x
-        val newY = position.y + velocity.y
-        return Point(Position(newX, newY), velocity)
+        return Point(position + velocity, velocity)
     }
+
+    override fun toString(): String {
+        return "position:$position velocity:$velocity"
+    }
+
     companion object {
         fun createFrom(line:String):Point {
             val firstSplit = line.split("<")
@@ -26,14 +29,22 @@ class Point(val position:Position, private val velocity:Velocity) {
             val velocityString = firstSplit[2].split(">")[0]
             val velocityX = velocityString.split(", ")[0].removePrefix(" ").toInt()
             val velocityY = velocityString.split(", ")[1].removePrefix(" ").toInt()
-            return Point(Position(positionX,positionY),Velocity(velocityX,velocityY))
+            return Point(Vector(positionX,positionY), Vector(velocityX,velocityY))
         }
 
     }
 }
 
-class Position(val x:Int, val y:Int)
-class Velocity(val x:Int, val y:Int)
+class Vector(val x:Int, val y:Int) {
+    infix operator fun plus(other:Vector):Vector {
+        return Vector(x + other.x, y + other.y)
+    }
+
+    override fun toString(): String {
+        return "($x, $y)"
+    }
+}
+
 
 fun drawList(list:List<Point>, seconds:Int) {
     if (listContainClusteredPoints(list)) {
