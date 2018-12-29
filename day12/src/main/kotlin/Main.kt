@@ -3,6 +3,7 @@ import java.io.File
 fun main(args: Array<String>) {
     val linesOfData = readFile()
 
+    //need to put some empty pots before and after the line of pots
     var stringOfPots = "........." + linesOfData[0].split(": ")[1] + "........................................................................................................................................................................"
     val listOfRules = linesOfData.drop(2).map{ Rule.createFrom(it)}
 
@@ -27,11 +28,13 @@ fun main(args: Array<String>) {
 fun createANewGenerationOfPots(stringOfPots:String, listOfRules: List<Rule>):String {
     var newGeneration = ""
     (0..stringOfPots.length - 1).forEach{ offset ->
-        val pots =  if (offset + 1 >= stringOfPots.length ) stringOfPots.substring((offset -2)..offset) + ".."
-        else if (offset + 2 >= stringOfPots.length ) stringOfPots.substring((offset -2)..(offset + 1)) + "."
-        else if (offset >= 2) stringOfPots.substring((offset - 2)..(offset + 2))
-        else if (offset >= 1) "." + stringOfPots.substring((offset - 1)..(offset + 2))
-        else ".." + stringOfPots.substring(0..(offset + 2))
+        val pots =  when{
+            (offset + 1 >= stringOfPots.length ) ->  stringOfPots.substring((offset -2)..offset) + ".."
+            (offset + 2 >= stringOfPots.length )  -> stringOfPots.substring((offset -2)..(offset + 1)) + "."
+            (offset >= 2) -> stringOfPots.substring((offset - 2)..(offset + 2))
+            (offset >= 1) -> "." + stringOfPots.substring((offset - 1)..(offset + 2))
+            else -> ".." + stringOfPots.substring(0..(offset + 2))
+        }
         newGeneration += checkAllRules(listOfRules,pots).second
     }
     return newGeneration
@@ -44,17 +47,13 @@ fun calcTotalOfPots(stringOfPots: String):Int {
     return total
 }
 
-
 fun checkAllRules(listOfRules:List<Rule>,pots:String):Pair<Boolean,String> {
     listOfRules.forEach { rule ->
         val resultOfRule = rule.applyTo(pots)
-        if (resultOfRule.first) {
-            return resultOfRule
-        }
+        if (resultOfRule.first) return resultOfRule
     }
-    return Pair(false,".")
+    return Pair(false,".") //spec doesn't say, but not rules triggered, empty the pot
 }
-
 
 fun readFile():List<String> {
     val lineList = mutableListOf<String>()
@@ -62,7 +61,7 @@ fun readFile():List<String> {
     return lineList
 }
 
-class Rule(val pattern:String, val result:String) {
+class Rule(private val pattern:String, private val result:String) {
 
     fun applyTo(pots:String):Pair<Boolean, String> {
         return if (pattern == pots) Pair(true, result) else Pair(false, pots.substring(2..2))
