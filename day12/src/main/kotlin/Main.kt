@@ -35,7 +35,7 @@ fun createANewGenerationOfPots(stringOfPots:String, listOfRules: List<Rule>):Str
             (offset >= 1) -> "." + stringOfPots.substring((offset - 1)..(offset + 2))
             else -> ".." + stringOfPots.substring(0..(offset + 2))
         }
-        newGeneration += checkAllRules(listOfRules,pots).second
+        newGeneration += checkAllRules(listOfRules,pots).newContentsOfPot
     }
     return newGeneration
 }
@@ -47,12 +47,12 @@ fun calcTotalOfPots(stringOfPots: String):Int {
     return total
 }
 
-fun checkAllRules(listOfRules:List<Rule>,pots:String):Pair<Boolean,String> {
+fun checkAllRules(listOfRules:List<Rule>,pots:String):RuleOutcome {
     listOfRules.forEach { rule ->
-        val resultOfRule = rule.applyTo(pots)
-        if (resultOfRule.first) return resultOfRule
+        val roleOutcome = rule.applyTo(pots)
+        if (roleOutcome.ruleTriggered) return roleOutcome
     }
-    return Pair(false,".") //spec doesn't say, but not rules triggered, empty the pot
+    return RuleOutcome(false,".") //spec doesn't say, but not rules triggered, empty the pot
 }
 
 fun readFile():List<String> {
@@ -63,8 +63,8 @@ fun readFile():List<String> {
 
 class Rule(private val pattern:String, private val result:String) {
 
-    fun applyTo(pots:String):Pair<Boolean, String> {
-        return if (pattern == pots) Pair(true, result) else Pair(false, pots.substring(2..2))
+    fun applyTo(pots:String):RuleOutcome {
+        return if (pattern == pots) RuleOutcome(true, result) else RuleOutcome(false, pots.substring(2..2))
     }
 
     companion object {
@@ -73,4 +73,6 @@ class Rule(private val pattern:String, private val result:String) {
         }
     }
 }
+
+class RuleOutcome(val ruleTriggered:Boolean, val newContentsOfPot:String)
 
