@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12bf98f6-7c12-47d6-99bc-9817d4f33435" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day11/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day12/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day11/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day11/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -28,12 +28,12 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" lean-forward="true" selection-start-line="2" selection-end-line="12" />
+            <state relative-caret-position="891">
+              <caret line="94" column="1" selection-start-line="90" selection-end-line="94" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -41,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.11/e49742d3259938ea3539346c8ca3babb54a5140f/kotlin-stdlib-common-1.3.11-sources.jar!/generated/_Collections.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
+            <state relative-caret-position="23310">
               <caret line="1560" selection-start-line="1560" selection-end-line="1560" />
             </state>
           </provider>
@@ -98,8 +98,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -200,18 +200,13 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Build" weight="0.3293124" />
-      <window_info anchor="bottom" id="Messages" weight="0.328807" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2560621" />
@@ -219,29 +214,34 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="10" weight="0.3293124" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.328807" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.11/e49742d3259938ea3539346c8ca3babb54a5140f/kotlin-stdlib-common-1.3.11-sources.jar!/generated/_Collections.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="1560" selection-start-line="1560" selection-end-line="1560" />
+        <state relative-caret-position="891">
+          <caret line="94" column="1" selection-start-line="90" selection-end-line="94" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.11/e49742d3259938ea3539346c8ca3babb54a5140f/kotlin-stdlib-common-1.3.11-sources.jar!/generated/_Collections.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="2" selection-end-line="12" />
+        <state relative-caret-position="23310">
+          <caret line="1560" selection-start-line="1560" selection-end-line="1560" />
         </state>
       </provider>
     </entry>
