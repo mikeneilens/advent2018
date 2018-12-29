@@ -24,12 +24,10 @@ class Point(val position: Vector, private val velocity: Vector) {
         fun createFrom(line:String):Point {
             val firstSplit = line.split("<")
             val positionString = firstSplit[1].split(">")[0]
-            val positionX = positionString.split(", ")[0].removePrefix(" ").toInt()
-            val positionY = positionString.split(", ")[1].removePrefix(" ").toInt()
+            val position = Vector.createFrom(positionString)
             val velocityString = firstSplit[2].split(">")[0]
-            val velocityX = velocityString.split(", ")[0].removePrefix(" ").toInt()
-            val velocityY = velocityString.split(", ")[1].removePrefix(" ").toInt()
-            return Point(Vector(positionX,positionY), Vector(velocityX,velocityY))
+            val velocity = Vector.createFrom(velocityString)
+            return Point(position, velocity)
         }
 
     }
@@ -42,6 +40,14 @@ class Vector(val x:Int, val y:Int) {
 
     override fun toString(): String {
         return "($x, $y)"
+    }
+
+    companion object {
+        fun createFrom(line:String):Vector {
+            val x = line.split(", ")[0].removePrefix(" ").toInt()
+            val y = line.split(", ")[1].removePrefix(" ").toInt()
+            return Vector(x,y)
+        }
     }
 }
 
@@ -84,6 +90,6 @@ fun listContainClusteredPoints(list:List<Point>):Boolean {
 
 fun readFile():List<String> {
     val lineList = mutableListOf<String>()
-    File("/Users/michaelneilens/day10.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
+    File("/Users/michaelneilens/day10-test").useLines { lines -> lines.forEach { lineList.add(it) }}
     return lineList
 }
