@@ -6,45 +6,59 @@ val intersectionChoice = listOf(InteresctionChoice.Left,InteresctionChoice.Strai
 fun main(args: Array<String>) {
     val mapLines = readFile()
     val mapAndVehicles = createTrackMap(mapLines)
+
     val trackMap = mapAndVehicles.first
-    var listOfVehicles = mapAndVehicles.second
+    val listOfVehicles = mapAndVehicles.second
 
     val maxX = mapLines[0].length - 1
     val maxY = mapLines.size - 1
 
     printMap(trackMap,listOfVehicles,maxX,maxY)
-    var noCollision = true
 
+    moveCarsUntilCrash(trackMap, listOfVehicles)
+
+    printMap(trackMap,listOfVehicles,maxX,maxY)
+
+    while (listOfVehicles.filter{vehicle -> vehicle.isAlive}.size > 1) {
+        moveCarsUntilCrash(trackMap, listOfVehicles)
+    }
+    val lastVehicleAlive = listOfVehicles.filter{vehicle -> vehicle.isAlive}
+    println("Last vehicle alive is at ${lastVehicleAlive[0].position}")
+}
+
+fun moveCarsUntilCrash(trackMap:HashMap<String,Track>, listOfVehicles: List<Vehicle>):Vector {
+    var noCollision = true
+    var positionOfCollision = Vector(0,0)
     while (noCollision) {
         listOfVehicles.sortedBy{vehicle -> vehicle.position.y * 10000 + vehicle.position.x }.forEach { vehicle ->
             vehicle.moveOn(trackMap)
             if (vehicle.hasCollided(listOfVehicles)) {
                 noCollision = false
+                positionOfCollision = vehicle.position
             }
         }
-        printMap(trackMap,listOfVehicles,maxX,maxY)
     }
+    return positionOfCollision
 }
 
 fun createTrackMap(mapLines:List<String>):Pair<HashMap<String,Track>,List<Vehicle> > {
-    val maxY = mapLines.size - 1
     val trackMap = HashMap<String, Track>()
     var listOfVehicles = listOf<Vehicle>()
 
-    (0..maxY).forEach { y ->
+    (0..(mapLines.size - 1)).forEach { y ->
         val listOfMapSquares = mapLines[y].toCharArray().map{it.toString()}
-        for (x in 0..listOfMapSquares.size -1) {
+        for (x in 0..listOfMapSquares.size - 1) {
             val mapSquare = listOfMapSquares[x]
             val position = Vector(x,y)
             if (mapSquare.isTrack() || mapSquare.isVehicle()) trackMap[position.toString()] = mapSquare.toTrack()
-            if (mapSquare.isVehicle()) listOfVehicles += Vehicle.createNew(position,mapSquare.toDirection().toTravel())
+            if (mapSquare.isVehicle()) listOfVehicles += Vehicle.createNew(position,mapSquare.toDirection().toVector())
         }
     }
     return Pair(trackMap, listOfVehicles)
 }
 
 
-class Vehicle(var position:Vector, var travel:Vector, private val id:Int, private var nextIntersectionNdx:Int = 0) {
+class Vehicle(var position:Vector, private var travel:Vector, private val id:Int, private var nextIntersectionNdx:Int = 0, var isAlive:Boolean=true) {
     fun image() = this.travel.toDirection().image
 
     override fun equals(other: Any?): Boolean {
@@ -52,6 +66,8 @@ class Vehicle(var position:Vector, var travel:Vector, private val id:Int, privat
     }
 
     fun moveOn(map:HashMap<String, Track>) {
+        if (!isAlive) return
+
         val newPosition = position + travel
         val track= map[newPosition.toString()]
         val newTravel = when (track) {
@@ -66,50 +82,55 @@ class Vehicle(var position:Vector, var travel:Vector, private val id:Int, privat
         position = newPosition
         travel = newTravel
     }
-    fun moveOnNWSEPath():Vector = when (travel.toDirection()) {
-            Direction.Left -> Direction.Up.toTravel()
-            Direction.Right -> Direction.Down.toTravel()
-            Direction.Up -> Direction.Left.toTravel()
-            Direction.Down -> Direction.Right.toTravel()
+    private fun moveOnNWSEPath():Vector = when (travel.toDirection()) {
+            Direction.Left -> Direction.Up.toVector()
+            Direction.Right -> Direction.Down.toVector()
+            Direction.Up -> Direction.Left.toVector()
+            Direction.Down -> Direction.Right.toVector()
     }
-    fun moveOnSWNEPath():Vector = when (travel.toDirection()) {
-        Direction.Left -> Direction.Down.toTravel()
-        Direction.Right -> Direction.Up.toTravel()
-        Direction.Up -> Direction.Right.toTravel()
-        Direction.Down -> Direction.Left.toTravel()
+    private fun moveOnSWNEPath():Vector = when (travel.toDirection()) {
+        Direction.Left -> Direction.Down.toVector()
+        Direction.Right -> Direction.Up.toVector()
+        Direction.Up -> Direction.Right.toVector()
+        Direction.Down -> Direction.Left.toVector()
     }
-    fun moveOnInteresection():Vector {
+    private fun moveOnInteresection():Vector {
         val newTravel = when (intersectionChoice[nextIntersectionNdx]) {
             InteresctionChoice.Straight -> travel
             InteresctionChoice.Left -> when (travel.toDirection()) {
-                                            Direction.Left -> Direction.Down.toTravel()
-                                            Direction.Right -> Direction.Up.toTravel()
-                                            Direction.Up -> Direction.Left.toTravel()
-                                            Direction.Down -> Direction.Right.toTravel()
+                                            Direction.Left -> Direction.Down.toVector()
+                                            Direction.Right -> Direction.Up.toVector()
+                                            Direction.Up -> Direction.Left.toVector()
+                                            Direction.Down -> Direction.Right.toVector()
                                         }
             InteresctionChoice.Right -> when (travel.toDirection()) {
-                                            Direction.Left -> Direction.Up.toTravel()
-                                            Direction.Right -> Direction.Down.toTravel()
-                                            Direction.Up -> Direction.Right.toTravel()
-                                            Direction.Down -> Direction.Left.toTravel()
+                                            Direction.Left -> Direction.Up.toVector()
+                                            Direction.Right -> Direction.Down.toVector()
+                                            Direction.Up -> Direction.Right.toVector()
+                                            Direction.Down -> Direction.Left.toVector()
                                         }
         }
         nextIntersectionNdx = if (nextIntersectionNdx < (intersectionChoice.size - 1) ) nextIntersectionNdx + 1 else 0
         return newTravel
     }
     fun hasCollided(listOfVehicles:List<Vehicle>):Boolean {
+        if (!isAlive) return false
+
         listOfVehicles.forEach { otherVehicle ->
-            if (otherVehicle != this) {
+            if (otherVehicle != this && otherVehicle.isAlive) {
                 if (otherVehicle.position == this.position) {
                     println("Collision at $position")
+                    otherVehicle.isAlive = false
+                    this.isAlive = false
                     return true
                 }
             }
         }
         return false
     }
+
     companion object {
-        var nextVehicleId = 0
+        private var nextVehicleId = 0
         fun createNew(position: Vector, travel: Vector):Vehicle {
             nextVehicleId += 1
             return Vehicle(position, travel, nextVehicleId)
@@ -140,9 +161,6 @@ enum class Track(val image:String){
 fun String.isTrack():Boolean {
     return (this == Track.VerticalPath.image) || (this == Track.HorizontalPath.image) || (this == Track.CurveSWNEPath.image) || (this == Track.CurveNWSEPath.image)|| (this == Track.Intersection.image)
 }
-fun String.isVehicle():Boolean {
-    return (this == Direction.Right.image) || (this == Direction.Left.image) || (this == Direction.Up.image) || (this == Direction.Down.image)
-}
 
 enum class Direction(val image:String) {
     Right(">"),
@@ -150,6 +168,10 @@ enum class Direction(val image:String) {
     Up("^"),
     Down("v")
 }
+fun String.isVehicle():Boolean {
+    return (this == Direction.Right.image) || (this == Direction.Left.image) || (this == Direction.Up.image) || (this == Direction.Down.image)
+}
+
 fun String.toDirection():Direction  = when(this) {
     Direction.Right.image -> Direction.Right
     Direction.Left.image -> Direction.Left
@@ -169,12 +191,12 @@ fun String.toTrack():Track  = when(this) {
     Direction.Down.image -> Track.VerticalPath
     else -> Track.HorizontalPath
 }
-enum class InteresctionChoice() {
+enum class InteresctionChoice {
     Right,
     Left,
     Straight
 }
-fun Direction.toTravel():Vector  = when(this) {
+fun Direction.toVector():Vector  = when(this) {
     Direction.Right -> Vector(1,0)
     Direction.Left -> Vector(-1,0)
     Direction.Down -> Vector(0,1)
@@ -204,7 +226,7 @@ fun printMap(trackMap:HashMap<String, Track>, vehicles:List<Vehicle>, maxX:Int,m
                 else -> " "
             }
         }
-        println(line)
+        println(line + y.toString())
     }
 }
 fun List<Vehicle>.toMap():HashMap<String, Vehicle>{
