@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f59f8e4d-5546-4bfc-af09-3b89b2abd51a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day14/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day11/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day11/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Direction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/InteresctionChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/InteresctionChoice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Track.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Track.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Vector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Vector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Vehicle$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Vehicle$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Vehicle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -32,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="123" column="40" lean-forward="true" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
+            <state relative-caret-position="60">
+              <caret line="5" column="31" selection-start-line="5" selection-end-line="5" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -100,7 +101,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546187702910" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546194682102" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -206,7 +207,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31522793" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31522793" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961204" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -237,8 +238,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="123" column="40" lean-forward="true" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
+        <state relative-caret-position="60">
+          <caret line="5" column="31" selection-start-line="5" selection-end-line="5" selection-end-column="31" />
         </state>
       </provider>
     </entry>
