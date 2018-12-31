@@ -1,4 +1,3 @@
-import javafx.geometry.Pos
 import java.io.File
 import java.lang.Math.abs
 import kotlin.collections.HashMap
@@ -28,7 +27,7 @@ fun playGame(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Int
 
             when (moveOutcome) {
                 is MoveOutcome.NoTargetsLeft -> return completedRounds
-                is MoveOutcome.Attack -> moveOutcome.unit.attacked(unit.attackPower)
+                is MoveOutcome.Attack -> moveOutcome.unitToAttack.attacked(unit.attackPower)
                 is MoveOutcome.Moved, MoveOutcome.CannotMove -> {
                     val targets = listOfUnits.filter { target -> (target::class != unit::class && target.isAlive()) }
                     val adjacentTarget = unit.adjacentTarget(targets)
@@ -75,22 +74,22 @@ fun Unit.move(listOfUnits:List<Unit>, mapOfSquares: HashMap<String, Square>):Mov
 
 fun Unit.pathIsClear(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>, offset:Position,  targetPosition:Position):Boolean {
     var path = this.position + Position(offset.x,offset.y)
-    while (((offset.x == 0 && path.y != targetPosition.y ) ||(offset.y == 0 && path.x != targetPosition.x) ) && (!positionIsBlocked(path, mapOfSquares, listOfUnits))) {
+    while (((offset.x == 0 && path.y != targetPosition.y ) ||(offset.y == 0 && path.x != targetPosition.x) ) && (!path.isBlocked(mapOfSquares, listOfUnits))) {
         path +=  Position(offset.x,offset.y)
     }
-    return !positionIsBlocked(path, mapOfSquares, listOfUnits)
+    return !path.isBlocked(mapOfSquares, listOfUnits)
 }
 
 fun Unit.emptyAdjacentSpaces(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):List<Position> {
     return  offsets.map{ offset ->
         val positionInRange = this.position + Position(offset.x,offset.y)
-        if (!positionIsBlocked(positionInRange, mapOfSquares,listOfUnits)) positionInRange
+        if (!positionInRange.isBlocked(mapOfSquares,listOfUnits)) positionInRange
         else  null
     }.filterNotNull()
 
 }
-fun positionIsBlocked(position:Position, mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Boolean {
-    return (mapOfSquares[position.toString()] != Square.Open || listOfUnits.unitAt(position) != null )
+fun Position.isBlocked(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Boolean {
+    return (mapOfSquares[this.toString()] != Square.Open || listOfUnits.unitAt(this) != null )
 }
 
 fun Unit.adjacentTarget(targets: List<Unit>):Unit? {
@@ -188,20 +187,15 @@ enum class Square(val image:String) {
     Goblin("G"),
     Elf("E")
 }
-open class Vector(val x:Int, val y:Int) {
-    infix operator fun plus(other:Vector):Vector {
-        return Vector(x + other.x, y + other.y)
+class Position(val x:Int, val y:Int) {
+    infix fun distanceTo(other:Position):Int {
+        return abs(this.x - other.x) + abs(this.y - other.y)
     }
     override fun equals(other: Any?): Boolean {
-        return other is Vector && this.x == other.x  && this.y == other.y
+        return other is Position && this.x == other.x  && this.y == other.y
     }
     override fun toString(): String {
         return "($x,$y)"
-    }
-}
-class Position(x:Int, y:Int):Vector(x,y) {
-    infix fun distanceTo(other:Position):Int {
-        return abs(this.x - other.x) + abs(this.y - other.y)
     }
     infix operator fun plus(other:Position):Position {
         return Position(x + other.x, y + other.y)
@@ -212,13 +206,13 @@ class Position(x:Int, y:Int):Vector(x,y) {
 }
 sealed class MoveOutcome {
     object NoTargetsLeft:MoveOutcome()
-    class Attack(val unit:Unit):MoveOutcome()
+    class Attack(val unitToAttack:Unit):MoveOutcome()
     object Moved:MoveOutcome()
     object CannotMove:MoveOutcome()
 
     override fun toString(): String =  when(this) {
         is MoveOutcome.NoTargetsLeft -> "No targets left"
-        is MoveOutcome.Attack -> "Attack" + this.unit.square
+        is MoveOutcome.Attack -> "Attack" + this.unitToAttack.square
         is MoveOutcome.Moved -> "Moved"
         is MoveOutcome.CannotMove -> "Cannot Move"
     }

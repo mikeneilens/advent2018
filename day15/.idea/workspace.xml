@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50a265f4-489f-48db-a7b8-c8f5c10d0734" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day13/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day13/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day14/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day14/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day14b/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day14b/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$maxX$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$maxX$$inlined$sortedBy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$maxY$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$maxY$$inlined$sortedBy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MoveOutcome$Attack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MoveOutcome$Attack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MoveOutcome$CannotMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MoveOutcome$CannotMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MoveOutcome$Moved.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MoveOutcome$Moved.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MoveOutcome$NoTargetsLeft.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MoveOutcome$NoTargetsLeft.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MoveOutcome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MoveOutcome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/Vector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -34,10 +34,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+            <state relative-caret-position="202">
+              <caret line="92" column="1" lean-forward="true" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
               <folding>
-                <element signature="e#0#106#0" expanded="true" />
+                <element signature="e#0#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,6 +60,11 @@
         <option value="Kotlin File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>toPos</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -108,7 +113,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546275657810" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546278160104" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -240,13 +245,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.kt</url>
-          <line>45</line>
+          <line>44</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.kt</url>
-          <line>68</line>
+          <line>67</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -265,10 +270,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        <state relative-caret-position="202">
+          <caret line="92" column="1" lean-forward="true" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
           <folding>
-            <element signature="e#0#106#0" expanded="true" />
+            <element signature="e#0#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
