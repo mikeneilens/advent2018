@@ -2,28 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc4309cd-a341-48c0-97ea-697da4ea5360" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day14/src/main/kotlin/Node.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Node.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day11/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day11/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day13/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day13/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day15/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day14/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day14/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -44,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="1" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -125,7 +115,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546203080828" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546248542496" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -220,6 +210,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -235,7 +226,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.3297769" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297769" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3297769" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961204" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -280,8 +271,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="1" selection-end-line="2" />
         </state>
       </provider>
     </entry>
