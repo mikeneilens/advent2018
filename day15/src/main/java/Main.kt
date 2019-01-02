@@ -5,10 +5,11 @@ import kotlin.collections.HashMap
 val offsets = listOf( Position(0,-1), Position(-1,0), Position(1,0), Position(0,1) )
 
 fun main(args: Array<String>) {
+
     val mapLines = readFile()
     val mapOfSquaresAndUnits = createMapOfSquaresAndUnits(mapLines)
     val mapOfSquares = mapOfSquaresAndUnits.first
-    var listOfUnits = mapOfSquaresAndUnits.second
+    val listOfUnits = mapOfSquaresAndUnits.second
     printMapOfSquares(mapOfSquares, listOfUnits)
 
     val completedRounds = playGame(mapOfSquares,listOfUnits)
@@ -17,7 +18,7 @@ fun main(args: Array<String>) {
     println("Final score is $totalScore")
 }
 
-fun playGame(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Int {
+fun playGame(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):Int {
     var completedRounds = 0
 
     while (completedRounds < 10000) {
@@ -29,95 +30,75 @@ fun playGame(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Int
                 is MoveOutcome.NoTargetsLeft -> return completedRounds
                 is MoveOutcome.Attack -> moveOutcome.unitToAttack.attacked(unit.attackPower)
                 is MoveOutcome.Moved, MoveOutcome.CannotMove -> {
-                    val targets = listOfUnits.filter { target -> (target::class != unit::class && target.isAlive()) }
+                    val targets = unit.targets(listOfUnits)
                     val adjacentTarget = unit.adjacentTarget(targets)
-                    if (adjacentTarget != null) {
-                        println("${unit.position} is attacking ${adjacentTarget.position}")
-                        adjacentTarget?.attacked(unit.attackPower)
-                    }
+                    adjacentTarget?.attacked(unit.attackPower)
                 }
             }
         }
         completedRounds += 1
         println("Completed Round $completedRounds")
         printMapOfSquares(mapOfSquares, listOfUnits)
-        if (completedRounds == 23) {
+        if (completedRounds == 13) {
             println("stop!!")
         }
     }
     return completedRounds
 }
 
-fun Unit.move(listOfUnits:List<Unit>, mapOfSquares: HashMap<String, Square>):MoveOutcome {
-    val targets = listOfUnits.filter { unit -> (unit::class != this::class && unit.isAlive()) }
-    if (targets.size == 0) return MoveOutcome.NoTargetsLeft
+fun getRoute(targetPosition:Position, node:Node, mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):List<Node> {
 
-    val adjacentTarget = this.adjacentTarget(targets)
-    if (adjacentTarget != null) return MoveOutcome.Attack(adjacentTarget)
+    if (targetPosition == node.position) return listOf(node)
 
-    val positionsInRangeOfTarget = targets.map{ target -> target.emptyAdjacentSpaces(mapOfSquares,listOfUnits)}.flatten()
-    val positionsInRangeSorted = positionsInRangeOfTarget.sortedBy { position -> (position distanceTo this.position) * 1000000 + position.y * 1000 + position.x   }
-    if (positionsInRangeSorted.size == 0) return MoveOutcome.CannotMove
-    val closestPositionInRange = positionsInRangeSorted.first()
+    val shortestWayToThisLocation = HashMap<Position, Int>()
 
-    val potentialSteps = this.emptyAdjacentSpaces(mapOfSquares, listOfUnits)
-    if (potentialSteps.size == 0) return MoveOutcome.CannotMove
+    fun getRoute( node: Node, validEndNodes: MutableList<Node>): List<Node> {
 
-    val stepsNotOnBlockedPath = potentialSteps.filter { position -> pathIsClear(mapOfSquares, listOfUnits, position - this.position ,closestPositionInRange)   }
+        val adjacentPositions = node.position.emptyAdjacentPositions(mapOfSquares, listOfUnits)
 
-    val closestStepsToTarget = stepsNotOnBlockedPath.sortedBy{position -> (position distanceTo closestPositionInRange) * 1000000 + position.y + position.x}
-    if (closestStepsToTarget.size == 0) return MoveOutcome.CannotMove
-    val newPosition = closestStepsToTarget.first()
-    this.position = newPosition
-    return MoveOutcome.Moved
-}
-
-fun Unit.pathIsClear(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>, offset:Position,  targetPosition:Position):Boolean {
-    var path = this.position + Position(offset.x,offset.y)
-    while (((offset.x == 0 && path.y != targetPosition.y ) ||(offset.y == 0 && path.x != targetPosition.x) ) && (!path.isBlocked(mapOfSquares, listOfUnits))) {
-        path +=  Position(offset.x,offset.y)
-    }
-    return !path.isBlocked(mapOfSquares, listOfUnits)
-}
-
-fun Unit.emptyAdjacentSpaces(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):List<Position> {
-    return  offsets.map{ offset ->
-        val positionInRange = this.position + Position(offset.x,offset.y)
-        if (!positionInRange.isBlocked(mapOfSquares,listOfUnits)) positionInRange
-        else  null
-    }.filterNotNull()
-
-}
-fun Position.isBlocked(mapOfSquares: HashMap<String, Square>, listOfUnits: List<Unit>):Boolean {
-    return (mapOfSquares[this.toString()] != Square.Open || listOfUnits.unitAt(this) != null )
-}
-
-fun Unit.adjacentTarget(targets: List<Unit>):Unit? {
-    var nearestTarget:Unit? = null
-    targets.forEach { target ->
-        offsets.forEach { offset ->
-            val positionInRange = target.position + Position(offset.x,offset.y)
-            if (positionInRange == this.position) {
-                if (target.hitPoints < (nearestTarget?.hitPoints ?: 9999 )) {
-                    nearestTarget = target
+        adjacentPositions.forEach { position ->
+            if (position == targetPosition) {
+                shortestWayToThisLocation[position] = node.ancestors
+                val newNode = Node(position, node,node.ancestors + 1)
+                validEndNodes.add(newNode)
+            } else {
+                val shortestWayToHere = shortestWayToThisLocation[position] ?: 99999
+                if (node.ancestors < shortestWayToHere) {
+                    shortestWayToThisLocation[position] = node.ancestors
+                    val newNode = Node(position, node,node.ancestors + 1)
+                    getRoute(newNode, validEndNodes)
                 }
             }
         }
+        return validEndNodes
     }
-    return nearestTarget
+
+    return getRoute(node, mutableListOf())
 }
 
-fun Unit.attacked(attackPower:Int) {
-    if (attackPower == 0 || !isAlive()) return
-    else {
-      //  println("$square at $position is being attacked!")
-        hitPoints = hitPoints - 1
-        this.attacked(attackPower - 1)
+class Node(val position:Position, private val parent:Node?, val ancestors:Int) {
+    fun rootNode():Node {
+        return if (parent?.parent == null) this else this.parent.rootNode()
+    }
+    override fun toString(): String {
+        return "Node at $position"
     }
 }
+fun List<Node>.shortestRoute():Node {
+    var shortest = 9999999
+    var nodeToReturn = Node(Position(0,0), null,0)
+    //does this manually to keep to top to bottom rule in event of a draw
+    this.forEach { node ->
+        if (node.ancestors < shortest) {
+            shortest = node.ancestors
+            nodeToReturn = node
+        }
+    }
+    return nodeToReturn
+}
 
-fun createMapOfSquaresAndUnits(mapLines:List<String>):Pair<HashMap<String, Square>,List<Unit>> {
-    val mapOfSquares = HashMap<String, Square>()
+fun createMapOfSquaresAndUnits(mapLines:List<String>):Pair<HashMap<Position, Square>,List<Unit>> {
+    val mapOfSquares = HashMap<Position, Square>()
     var listOfUnits = listOf<Unit>()
 
     mapLines.forEachIndexed {y, line ->
@@ -126,45 +107,36 @@ fun createMapOfSquaresAndUnits(mapLines:List<String>):Pair<HashMap<String, Squar
             when (stringChar.toSquare()) {
                 Square.Goblin -> {
                                     listOfUnits += Goblin(Position(x,y))
-                                    mapOfSquares[Position(x,y).toString()] = Square.Open
+                                    mapOfSquares[Position(x,y)] = Square.Open
                                 }
                 Square.Elf ->   {
                                     listOfUnits += Elf(Position(x, y))
-                                    mapOfSquares[Position(x,y).toString()] = Square.Open
+                                    mapOfSquares[Position(x,y)] = Square.Open
                                 }
-                else -> mapOfSquares[Position(x,y).toString()] = stringChar.toSquare()
+                else -> mapOfSquares[Position(x,y)] = stringChar.toSquare()
             }
         }
     }
     return Pair(mapOfSquares, listOfUnits)
 }
 
-fun printMapOfSquares(mapOfSquares:HashMap<String, Square>, listOfUnits:List<Unit>) {
+fun printMapOfSquares(mapOfSquares:HashMap<Position, Square>, listOfUnits:List<Unit>) {
     val maxY= mapOfSquares.maxY()
     val maxX = mapOfSquares.maxX()
 
-    var line = ""
     (0..maxY).forEach { y ->
         var line = ""
         (0..maxX).forEach {x ->
             val position = Position(x,y)
             val unit = listOfUnits.unitAt(position)
-            if (unit != null && unit.isAlive())
-                line += unit.square.image
-            else
-                line += mapOfSquares[position.toString()]?.image ?: Square.Open.image
+            line += if (unit != null && unit.isAlive()) unit.square.image
+                    else mapOfSquares[position]?.image ?: Square.Open.image
         }
         line += listOfUnits.scoresOnRow(y)
         println(line)
     }
 }
 
-open class Unit(var position:Position, val square:Square, val attackPower:Int = 3, var hitPoints:Int = 200   ) {
-    fun isAlive() = (hitPoints > 0)
-    fun scoreToString():String {
-        return "${square.image}($hitPoints)"
-    }
-}
 fun List<Unit>.scoresOnRow(y:Int):String{
     var text=""
     this.forEach{unit->
@@ -172,6 +144,69 @@ fun List<Unit>.scoresOnRow(y:Int):String{
     }
     return text
 }
+
+open class Unit(var position:Position, val square:Square, val attackPower:Int = 3, var hitPoints:Int = 200   ) {
+    fun isAlive() = (hitPoints > 0)
+    fun scoreToString():String {
+        return "${square.image}($hitPoints)"
+    }
+
+    fun move(listOfUnits:List<Unit>, mapOfSquares: HashMap<Position, Square>):MoveOutcome {
+        val targets =  targets(listOfUnits)
+        if (targets.isEmpty()) return MoveOutcome.NoTargetsLeft
+
+        val adjacentTarget = this.adjacentTarget(targets)
+        if (adjacentTarget != null) return MoveOutcome.Attack(adjacentTarget)
+
+        val positionsInRangeOfTarget = targets.map{ target -> target.emptyAdjacentPositions(mapOfSquares,listOfUnits)}.flatten()
+        val positionsInRangeSorted = positionsInRangeOfTarget.sortedBy { position -> (position distanceTo this.position) * 1000000 + position.y * 1000 + position.x   }
+        if (positionsInRangeSorted.isEmpty()) return MoveOutcome.CannotMove
+
+        positionsInRangeSorted.forEach { targetPosition ->
+            val validRoutes = getRoute(targetPosition, Node(this.position, null,0),  mapOfSquares,listOfUnits)
+            if (validRoutes.isNotEmpty()) {
+                val bestNode = validRoutes.shortestRoute().rootNode()
+                this.position = bestNode.position
+                return MoveOutcome.Moved
+            }
+        }
+        return MoveOutcome.CannotMove
+
+    }
+
+    private fun emptyAdjacentPositions(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):List<Position> {
+        return this.position.emptyAdjacentPositions(mapOfSquares,listOfUnits)
+    }
+
+    fun adjacentTarget(listOfUnits: List<Unit>):Unit? {
+        var targetWithLowestHitPoints:Unit? = null
+        listOfUnits.forEach { unit ->
+            offsets.forEach { offset ->
+                val positionInRange = unit.position + Position(offset.x,offset.y)
+                if (positionInRange == this.position) {
+                    if (unit.hitPoints < (targetWithLowestHitPoints?.hitPoints ?: 9999 )) {
+                        targetWithLowestHitPoints = unit
+                    }
+                }
+            }
+        }
+        return targetWithLowestHitPoints
+    }
+
+    fun attacked(attackPower:Int) {
+        if (attackPower == 0 || !isAlive()) return
+        else {
+            //  println("$square at $position is being attacked!")
+            hitPoints -= 1
+            this.attacked(attackPower - 1)
+        }
+    }
+
+    fun targets(listOfUnits:List<Unit>):List<Unit>{
+        return listOfUnits.filter { unit ->  (unit::class != this::class && unit.isAlive()) }
+    }
+}
+
 
 class Goblin( position:Position, square:Square = Square.Goblin ):Unit(position, square)
 class Elf( position:Position, square:Square = Square.Elf ):Unit(position, square)
@@ -181,12 +216,14 @@ fun readFile():List<String> {
     File("/Users/michaelneilens/day15-test2.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
     return lineList
 }
+
 enum class Square(val image:String) {
     Wall("#"),
     Open("."),
     Goblin("G"),
     Elf("E")
 }
+
 class Position(val x:Int, val y:Int) {
     infix fun distanceTo(other:Position):Int {
         return abs(this.x - other.x) + abs(this.y - other.y)
@@ -203,7 +240,24 @@ class Position(val x:Int, val y:Int) {
     infix operator fun minus(other:Position):Position {
         return Position(x - other.x, y - other.y)
     }
+    fun emptyAdjacentPositions(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):List<Position> {
+        return offsets.mapNotNull { offset ->
+            val positionInRange = this + Position(offset.x,offset.y)
+            if (!positionInRange.isBlocked(mapOfSquares,listOfUnits)) positionInRange
+            else  null
+        }
+    }
+    private fun isBlocked(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):Boolean {
+        return (mapOfSquares[this] != Square.Open || listOfUnits.unitAt(this) != null )
+    }
+
+    override fun hashCode(): Int {
+        var result = x
+        result = 31 * result + y
+        return result
+    }
 }
+
 sealed class MoveOutcome {
     object NoTargetsLeft:MoveOutcome()
     class Attack(val unitToAttack:Unit):MoveOutcome()
@@ -225,17 +279,14 @@ fun String.toSquare():Square = when (this) {
     "E" -> Square.Elf
     else -> Square.Open
 }
-fun String.toPosition():Position {
-    val values = this.removePrefix("(").removeSuffix(")").split(",")
-    return Position(values[0].toInt(),values[1].toInt())
-}
-fun HashMap<String, Square>.maxY():Int {
+
+fun HashMap<Position, Square>.maxY():Int {
     val positions = this.keys.toList()
-    return positions.sortedBy { it.toPosition().y}.last().toPosition().y
+    return positions.sortedBy { it.y}.last().y
 }
-fun HashMap<String, Square>.maxX():Int {
+fun HashMap<Position, Square>.maxX():Int {
     val positions = this.keys.toList()
-    return positions.sortedBy { it.toPosition().x}.last().toPosition().x
+    return positions.sortedBy { it.x}.last().x
 }
 fun List<Unit>.unitAt(position: Position):Unit? {
     this.forEach { unit ->
