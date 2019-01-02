@@ -14,8 +14,10 @@ fun main(args: Array<String>) {
 
     val completedRounds = playGame(mapOfSquares,listOfUnits)
 
-    val totalScore = completedRounds * listOfUnits.fold(0){acc, unit -> acc + unit.hitPoints}
-    println("Final score is $totalScore")
+    val totalHitPoints = listOfUnits.fold(0){acc, unit -> acc + unit.hitPoints}
+    val totalScore = completedRounds * totalHitPoints
+    println("Total hitpoints is $totalHitPoints. Score is $totalScore")
+    printMapOfSquares(mapOfSquares, listOfUnits)
 }
 
 fun playGame(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):Int {
@@ -39,9 +41,6 @@ fun playGame(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):I
         completedRounds += 1
         println("Completed Round $completedRounds")
         printMapOfSquares(mapOfSquares, listOfUnits)
-        if (completedRounds == 13) {
-            println("stop!!")
-        }
     }
     return completedRounds
 }
@@ -159,19 +158,27 @@ open class Unit(var position:Position, val square:Square, val attackPower:Int = 
         if (adjacentTarget != null) return MoveOutcome.Attack(adjacentTarget)
 
         val positionsInRangeOfTarget = targets.map{ target -> target.emptyAdjacentPositions(mapOfSquares,listOfUnits)}.flatten()
-        val positionsInRangeSorted = positionsInRangeOfTarget.sortedBy { position -> (position distanceTo this.position) * 1000000 + position.y * 1000 + position.x   }
-        if (positionsInRangeSorted.isEmpty()) return MoveOutcome.CannotMove
+        if (positionsInRangeOfTarget.isEmpty()) return MoveOutcome.CannotMove
 
-        positionsInRangeSorted.forEach { targetPosition ->
+        var nodeForShortestRoute = Node(Position(0,0),null,9999)
+        var routeFound = false
+
+        positionsInRangeOfTarget.forEach { targetPosition ->
             val validRoutes = getRoute(targetPosition, Node(this.position, null,0),  mapOfSquares,listOfUnits)
             if (validRoutes.isNotEmpty()) {
-                val bestNode = validRoutes.shortestRoute().rootNode()
-                this.position = bestNode.position
-                return MoveOutcome.Moved
+                val nodeForShortestRouteForTarget = validRoutes.shortestRoute()
+                if (nodeForShortestRouteForTarget.ancestors < nodeForShortestRoute.ancestors ) {
+                    nodeForShortestRoute = nodeForShortestRouteForTarget
+                    routeFound = true
+                }
             }
         }
-        return MoveOutcome.CannotMove
-
+        if (routeFound) {
+            this.position = nodeForShortestRoute.rootNode().position
+            return MoveOutcome.Moved
+        } else {
+            return MoveOutcome.CannotMove
+        }
     }
 
     private fun emptyAdjacentPositions(mapOfSquares: HashMap<Position, Square>, listOfUnits: List<Unit>):List<Position> {
@@ -210,12 +217,6 @@ open class Unit(var position:Position, val square:Square, val attackPower:Int = 
 
 class Goblin( position:Position, square:Square = Square.Goblin ):Unit(position, square)
 class Elf( position:Position, square:Square = Square.Elf ):Unit(position, square)
-
-fun readFile():List<String> {
-    val lineList = mutableListOf<String>()
-    File("/Users/michaelneilens/day15-test2.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
-    return lineList
-}
 
 enum class Square(val image:String) {
     Wall("#"),
@@ -294,3 +295,9 @@ fun List<Unit>.unitAt(position: Position):Unit? {
     }
     return null
 }
+fun readFile():List<String> {
+    val lineList = mutableListOf<String>()
+    File("/Users/michaelneilens/day15.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
+    return lineList
+}
+
