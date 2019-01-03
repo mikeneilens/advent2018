@@ -4,15 +4,10 @@ fun main(args: Array<String>) {
     val linesOfData = readFile()
     val listOfInstruction = processFile(linesOfData)
 
-    val functions = listOf(addr, addi, mulr,muli,bani,banr,borr,bori,setr,seti,gtir,gtri,gtrr, eqir,eqri,eqrr)
-    val functionnames = listOf("addr", "addi", "mulr","muli","bani","banr","borr","bori","setr","seti","gtir","gtri","gtrr","eqir","eqri","eqrr")
-    //val codeToFunction = listOf(3,6,11,14,12,13,1, ? ,2,0,7,?,9,15,?,10)
-    val codeToFunction = listOf(3,6,11,14,12,13,1, 8 ,2,0,7,5,9,15,4,10)
-
+    //Part 1
     var countOfInstructions = 0
-
     listOfInstruction.forEach { instruction ->
-        val opCodesWithSameResultAsTheInstruction = instruction.opCodesWithSameResultAsTheInstruction(functions)
+        val opCodesWithSameResultAsTheInstruction = instruction.opCodesWithSameResultAsTheInstruction(OpCode.functions)
         if (opCodesWithSameResultAsTheInstruction.size >= 3) {
             countOfInstructions += 1
         }
@@ -20,6 +15,18 @@ fun main(args: Array<String>) {
 
     println("$countOfInstructions instructions out of ${listOfInstruction.size} instructions behave like 3 or more OpCodes")
 
+
+    //part 2
+
+    val listOfDatab = readFileb()
+    val listOfOperations = processFileb(listOfDatab)
+
+    var register = listOf(0,0,0,0)
+    listOfOperations.forEach {opCode ->
+        register = opCode.executeFunction(register)
+    }
+
+    println("Content of register 0 is ${register[0]}")
 
 }
 
@@ -39,92 +46,107 @@ class Instruction(val beforeRegisters:List<Int>, val afterRegisters:List<Int>, v
         return listOfOpCodesNdx
     }
 }
+
 class OpCode(val description:String, val number:Int, val A:Int, val B:Int, val C:Int ) {
+
+    //val codeToFunction = listOf(3,6,11,14,12,13,1, ? ,2,0,7,?,9,15,?,10) //had to guess op 7, 11 and 14!
+    val codeToFunction = listOf(3,6,11,14,12,13,1,8,2,0,7,4,9,15,5,10)
+
+    fun executeFunction(register:List<Int>):List<Int> {
+        val f = functions[codeToFunction[number]]
+        return  f(A, B, C, register)
+    }
+
     override fun toString(): String {
         return "$description $number $A $B $C"
     }
+
+    companion object {
+        val addr = fun (A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A] + registers[B]
+            return result
+        }
+        val addi = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A] + B
+            return result
+        }
+        val mulr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A] * registers[B]
+            return result
+        }
+        val muli = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A] * B
+            return result
+        }
+        val banr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A].and(registers[B])
+            return result
+        }
+        val bani = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A].and(B)
+            return result
+        }
+        val borr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A].or(registers[B])
+            return result
+        }
+        val bori = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A].or(B)
+            return result
+        }
+        val setr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  registers[A]
+            return result
+        }
+        val seti = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  A
+            return result
+        }
+        val gtir = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (A > (registers[B])) 1 else 0
+            return result
+        }
+        val gtri = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (registers[A] > B) 1 else 0
+            return result
+        }
+        val gtrr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (registers[A] > registers[B]) 1 else 0
+            return result
+        }
+        val eqir = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (A == (registers[B])) 1 else 0
+            return result
+        }
+        val eqri = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (registers[A] == B) 1 else 0
+            return result
+        }
+        val eqrr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+            val result = registers.toMutableList()
+            result[C] =  if (registers[A] == registers[B]) 1 else 0
+            return result
+        }
+        val functions = listOf(addr, addi, mulr,muli,bani,banr,borr,bori,setr,seti,gtir,gtri,gtrr, eqir,eqri,eqrr)
+    }
 }
 
-val addr = fun (A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A] + registers[B]
-    return result
-}
-val addi = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A] + B
-    return result
-}
-val mulr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A] * registers[B]
-    return result
-}
-val muli = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A] * B
-    return result
-}
-val banr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A].and(registers[B])
-    return result
-}
-val bani = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A].and(B)
-    return result
-}
-val borr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A].or(registers[B])
-    return result
-}
-val bori = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A].or(B)
-    return result
-}
-val setr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  registers[A]
-    return result
-}
-val seti = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  A
-    return result
-}
-val gtir = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (A > (registers[B])) 1 else 0
-    return result
-}
-val gtri = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (registers[A] > B) 1 else 0
-    return result
-}
-val gtrr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (registers[A] > registers[B]) 1 else 0
-    return result
-}
-val eqir = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (A == (registers[B])) 1 else 0
-    return result
-}
-val eqri = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (registers[A] == B) 1 else 0
-    return result
-}
-val eqrr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
-    val result = registers.toMutableList()
-    result[C] =  if (registers[A] == registers[B]) 1 else 0
-    return result
-}
+
 
 fun processFile(linesOfData:List<String>):List<Instruction> {
     var listOfInstructions = listOf<Instruction>()
@@ -140,9 +162,25 @@ fun processFile(linesOfData:List<String>):List<Instruction> {
     return listOfInstructions
 }
 
+fun processFileb(linesOfData:List<String>):List<OpCode> {
+    var listOfOpCodes = listOf<OpCode>()
+    linesOfData.forEach { line ->
+        val nums = line.split(" ").map{it.toInt()}
+        val opCode = OpCode("",nums[0],nums[1],nums[2],nums[3])
+        listOfOpCodes += opCode
+    }
+    return listOfOpCodes
+}
+
+
 fun readFile():List<String> {
     val lineList = mutableListOf<String>()
     File("/Users/michaelneilens/day16.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
+    return lineList
+}
+fun readFileb():List<String> {
+    val lineList = mutableListOf<String>()
+    File("/Users/michaelneilens/day16b.txt").useLines { lines -> lines.forEach { lineList.add(it) }}
     return lineList
 }
 fun String.toRegister():List<Int>{
