@@ -1,4 +1,3 @@
-import javafx.geometry.Pos
 import java.io.File
 
 val adjacentVectors = listOf(Position(-1,-1),Position(0,-1),Position(+1,-1),Position(-1,0),Position(+1,0),Position(-1,+1),Position(0,+1),Position(+1,+1))
@@ -8,7 +7,7 @@ fun main(args: Array<String>) {
     var mapOfAcres = createMap(listOfData)
     mapOfAcres.print(0 )
 
-    (1..10).forEachIndexed() { ndx, _ ->
+    (1..10).forEachIndexed { ndx, _ ->
         val newMapOfAcres:Map<Position, AcreType> = mapOfAcres.mapValues{   val position = it.key; val acreType = it.value
                                                                             val surroundingAcres = position.adjacentAcres(mapOfAcres)
                                                                  acreType.transform(surroundingAcres)
@@ -90,7 +89,6 @@ fun AcreType.transform(surroundingAcres:List<AcreType>):AcreType = when(this) {
         AcreType.OpenGround ->  if (surroundingAcres.threeOrMoreContainTrees()) AcreType.Trees else AcreType.OpenGround
         AcreType.Trees -> if (surroundingAcres.threeOrMoreContainLumberYards()) AcreType.Lumberyard else AcreType.Trees
         AcreType.Lumberyard -> if (surroundingAcres.oneOrMoreLumberYardsAndOneOrMoreTrees()) AcreType.Lumberyard else AcreType.OpenGround
-        else -> this
 }
 
 fun List<AcreType>.threeOrMoreContainTrees():Boolean {
@@ -100,7 +98,7 @@ fun List<AcreType>.threeOrMoreContainLumberYards():Boolean {
     return this.filter { it == AcreType.Lumberyard }.size >= 3
 }
 fun List<AcreType>.oneOrMoreLumberYardsAndOneOrMoreTrees():Boolean {
-    return (this.filter { it == AcreType.Lumberyard }.size >= 1) && (this.filter { it == AcreType.Trees }.size >=1)
+    return (this.any { it == AcreType.Lumberyard }) && (this.any { it == AcreType.Trees })
 }
 
 fun String.toAcreType() = when (this) {
