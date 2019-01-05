@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61400a0d-8783-458e-9377-71be2d3115e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day17/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day17/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day15/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day15/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day19/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day18/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day18/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2400">
-              <caret line="160" column="5" lean-forward="true" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+              <caret line="160" column="5" selection-end-line="200" />
             </state>
           </provider>
         </entry>
@@ -74,6 +74,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -96,7 +97,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -196,9 +196,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14027777" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10486111" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -232,7 +231,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2400">
-          <caret line="160" column="5" lean-forward="true" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+          <caret line="160" column="5" selection-end-line="200" />
         </state>
       </provider>
     </entry>
