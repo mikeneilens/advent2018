@@ -7,13 +7,13 @@ fun main(args: Array<String>) {
     var mapOfAcres = createMap(listOfData)
     mapOfAcres.print(0 )
 
-    (1..10).forEachIndexed { ndx, _ ->
+    (1..10).forEach { minute ->
         val newMapOfAcres:Map<Position, AcreType> = mapOfAcres.mapValues{   val position = it.key; val acreType = it.value
                                                                             val surroundingAcres = position.adjacentAcres(mapOfAcres)
                                                                  acreType.transform(surroundingAcres)
                                                                         }
         mapOfAcres = newMapOfAcres
-        mapOfAcres.print(ndx + 1)
+        mapOfAcres.print(minute)
     }
 
     //This is for part 2. You end up at this repeating pattern of 28 pairs which starts at ndx 2860
@@ -38,7 +38,7 @@ fun createMap(listOfData:List<String>):Map<Position,AcreType> {
     }
     return mapOfAcres
 }
-fun Map<Position,AcreType>.print(ndx:Int){
+fun Map<Position,AcreType>.print(minute:Int){
     val minX = this.keys.sortedBy { it.x }.first().x
     val minY = this.keys.sortedBy { it.y }.first().y
     val maxX = this.keys.sortedBy { it.x }.last().x
@@ -54,7 +54,7 @@ fun Map<Position,AcreType>.print(ndx:Int){
     val numberOfLumberYards = this.filter { it.value == AcreType.Lumberyard }.size
     val numberOfTrees = this.filter { it.value == AcreType.Trees }.size
 
-    println("Number of Trees = $numberOfTrees, number of Lumberyards = $numberOfLumberYards Product is ${numberOfTrees * numberOfLumberYards}  $ndx")
+    println("Number of Trees = $numberOfTrees, number of Lumberyards = $numberOfLumberYards Product is ${numberOfTrees * numberOfLumberYards}  $minute")
     println()
 }
 
