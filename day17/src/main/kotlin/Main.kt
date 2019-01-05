@@ -6,33 +6,15 @@ fun main(args: Array<String>) {
     val listOfData = readFile()
 
     val mapOfTiles = createMap(listOfData)
-    printMap(mapOfTiles)
     var x = 0
-    var noOfWaterTiles = 0
-    var noOfWetSandTiles = 0
-    while (x < 100000) {
-        pourWater(Position(500,0),Vector(0,1),mapOfTiles, x)
-        if (x % 5000 == 0 ) { //check every 10000 drops
-            val noOfNewWaterTiles = mapOfTiles.countTiles(Tile.Water)
-            val noOfNewWetSandTiles = mapOfTiles.countTiles(Tile.WetSand)
-            if (noOfNewWaterTiles == noOfWaterTiles || noOfNewWetSandTiles == noOfWetSandTiles ) {
-                break
-            } else {
-                printMap(mapOfTiles)
-                noOfWaterTiles = noOfNewWaterTiles
-                noOfWetSandTiles = noOfNewWetSandTiles
-                println("Wet sand tiles = $noOfWetSandTiles")
-                println("Water tiles    = $noOfWaterTiles")
-            }
-        }
-        if (x % 1000 == 0) {
-            println(x)
-        }
+    var leaksFound = 0
+    while (x < 100000 && leaksFound < 10) {
+        leaksFound += pourWater(Position(500,0),mapOfTiles)
         x += 1
     }
 
-    noOfWaterTiles = mapOfTiles.countTiles(Tile.Water)
-    noOfWetSandTiles = mapOfTiles.countTiles(Tile.WetSand)
+    val noOfWaterTiles = mapOfTiles.countTiles(Tile.Water)
+    val noOfWetSandTiles = mapOfTiles.countTiles(Tile.WetSand)
 
     printMap(mapOfTiles)
     println("Wet sand tiles = $noOfWetSandTiles")
@@ -74,87 +56,63 @@ fun printMap(mapOfTiles:HashMap<Position, Tile>) {
 
     (minY..maxY).forEach() { y ->
         var line = ""
-        var wetTiles = 0
         (minX..maxX).forEach{ x ->
             val tile = mapOfTiles[Position(x,y)]
             line += when (tile) {
                         null -> "."
                         else -> tile.toString()
                     }
-            when (tile) {
-                Tile.Water -> wetTiles += 1
-                Tile.WetSand -> wetTiles += 1
-            }
         }
-        println(line + " $wetTiles")
+        println(line)
     }
     println()
 }
 
 
-fun pourWater(position:Position, currentDirection:Vector,mapOfTiles:HashMap<Position, Tile>, dropNo:Int ){
+fun pourWater(position:Position, mapOfTiles:HashMap<Position, Tile>):Int {
+
     val minX = mapOfTiles.minX()
     val maxX = mapOfTiles.maxX()
     val maxY = mapOfTiles.maxY()
-    val downDirection = Vector(0,1)
-    val leftDirection = Vector(-1,0)
-    val rightDirection = Vector(1,0)
 
-    tailrec fun pourWaterBounded(position:Position, currentDirection:Vector,mapOfTiles:HashMap<Position, Tile> ){
+    tailrec fun pourWaterBounded(position:Position):Int{
+
+        if (position.y >= maxY) return 1
+
+        if (position.positionIsBlocked(mapOfTiles)) return 0
 
         //See if water can drop
         if (!position.positionBelowIsBlocked(mapOfTiles)) {
-            if (position.y == maxY) {
-                return
-            } else {
-                val newPosition = position + downDirection
-                mapOfTiles[newPosition] =  Tile.WetSand
-                return pourWaterBounded(newPosition, downDirection, mapOfTiles)
-            }
-        } else {
-
+            val newY = mapOfTiles.fillVerticalWithTilesUntilBlocked(position, maxY, Tile.WetSand)
+            if (newY >= maxY) return 1
+            else return pourWaterBounded(Position(position.x, newY))
         }
 
-        //See if there are leaks to the left or right. Return left and right bounds of container if there are no leaks
+        //See if there are leaks to the left or right.
         val leakToLeft = mapOfTiles.leakToLeft(position,position.x, minX)
         val leakToRight = mapOfTiles.leakToRight(position,position.x, maxX)
 
-        if (!leakToLeft.first && !leakToRight.first ) {
-            val freePositionToLeft = leakToLeft.second
-            val freePositionToRight = leakToRight.second
-            when {
-                (freePositionToLeft.x != position.x ) -> mapOfTiles[freePositionToLeft] = Tile.Water
-                (freePositionToRight.x != position.x ) -> mapOfTiles[freePositionToRight] = Tile.Water
-                else -> mapOfTiles[position] = Tile.Water
-            }
-            return
-        }
+        val positionOfLeakOrLeftBoundary = leakToLeft.second
+        val positionOfLeakOrRightBoundary = leakToRight.second
 
-        //If I've fallen to here then set off in either left or right direction
-        if (currentDirection == downDirection) {
-            if (dropNo % 5 == 2 || dropNo % 5 == 3) {
-                return pourWaterBounded(position, leftDirection, mapOfTiles)
-            } else {
-                return pourWaterBounded(position, rightDirection, mapOfTiles)
-            }
-        }
+        //if no leaks, fill this row with water, otherwise fill row with wet tiles
+        val tile = if (!leakToLeft.first && !leakToRight.first ) Tile.Water else Tile.WetSand
 
-        val newPosition = position + currentDirection
-        //If cannot go in current direction, go in the opposite direction
-        if (newPosition.positionIsBlocked(mapOfTiles)) {
-            if (currentDirection == rightDirection) {
-                return pourWaterBounded(position, leftDirection, mapOfTiles)
-            } else {
-                return pourWaterBounded(position, rightDirection, mapOfTiles)
-            }
-        }
+        //fill this row with tiles
+        mapOfTiles.fillHorizontalWithTiles(positionOfLeakOrLeftBoundary.x, positionOfLeakOrRightBoundary.x, position.y, tile)
 
-        //If have got here then am following a valid wet route so put down a wet sand marker
-        mapOfTiles[newPosition] =  Tile.WetSand
-        return pourWaterBounded(newPosition, currentDirection, mapOfTiles)
+        //if no leaks, return otherwise carry on dropping at position of the leaks
+        when {
+            (!leakToLeft.first && !leakToRight.first ) -> return 0
+            (leakToLeft.first && leakToRight.first) ->
+                return if (Random.nextBoolean()) pourWaterBounded(positionOfLeakOrLeftBoundary ) else pourWaterBounded(positionOfLeakOrRightBoundary )
+            (leakToLeft.first) -> return pourWaterBounded(positionOfLeakOrLeftBoundary  )
+            (leakToRight.first) -> return pourWaterBounded(positionOfLeakOrRightBoundary )
+            else -> return 0
+        }
     }
 
-    pourWaterBounded(position,currentDirection, mapOfTiles)
+    return pourWaterBounded(position)
 }
 
 fun readFile():List<String> {
@@ -228,6 +186,18 @@ fun HashMap<Position,Tile>.maxY():Int  {
 }
 fun HashMap<Position,Tile>.countTiles(tile:Tile):Int {
     return this.values.filter{it == tile}.size
+}
+tailrec fun HashMap<Position,Tile>.fillVerticalWithTilesUntilBlocked(position:Position, maxY:Int, tile:Tile):Int {
+    if (position.y >= maxY) return position.y
+    if (position.positionBelowIsBlocked(this)) return position.y
+    val newPosition = Position(position.x, position.y +1)
+    this[newPosition] =  Tile.WetSand
+    return fillVerticalWithTilesUntilBlocked(newPosition, maxY, tile)
+}
+tailrec fun HashMap<Position,Tile>.fillHorizontalWithTiles(firstX:Int, lastX:Int, y:Int, tile:Tile) {
+    if (firstX > lastX) return
+    this[Position(firstX, y)] = tile
+    fillHorizontalWithTiles(firstX + 1,lastX, y, tile)
 }
 
 tailrec fun HashMap<Position, Tile>.leakToLeft(position:Position, x:Int, minX:Int):Pair<Boolean, Position> {
