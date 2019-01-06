@@ -1,8 +1,7 @@
 import java.io.File
-import kotlin.math.abs
 
 fun main(args: Array<String>) {
-    val data=readFile("/Users/michaelneilens/day20.txt")[0].replace("$","").replace("^","").toCharArray().map{it.toString()}
+    val data=readFile("/Users/michaelneilens/day20-test2.txt")[0].replace("$","").replace("^","").toCharArray().map{it.toString()}
 
     val finalNodes = mutableListOf<Node>()
     val mapOfBase = hashMapOf<Vector, String>()
@@ -23,7 +22,6 @@ fun main(args: Array<String>) {
 
 fun processData(initialData:List<String>, initialNode:Node, finalNodes:MutableList<Node>, mapOfBase:HashMap<Vector, String>) {
 
-
     var data = initialData
     var node = initialNode
 
@@ -36,10 +34,10 @@ fun processData(initialData:List<String>, initialNode:Node, finalNodes:MutableLi
             Route.North, Route.South, Route.East, Route.West -> {
                 val doorPosition = node.position + head.move
                 val newPosition = doorPosition + head.move
-                mapOfBase[doorPosition ] = head.image
-                mapOfBase[doorPosition + head.wall1] = "#"
-                mapOfBase[doorPosition + head.wall2] = "#"
-                mapOfBase[newPosition] = "."
+//                mapOfBase[doorPosition ] = head.image
+//                mapOfBase[doorPosition + head.wall1] = "#"
+//                mapOfBase[doorPosition + head.wall2] = "#"
+//                mapOfBase[newPosition] = "."
                 node = Node(node, node.noOfParents + 1, newPosition)
                 data = tail
             }
