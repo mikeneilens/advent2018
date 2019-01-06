@@ -3,35 +3,35 @@ import java.io.File
 fun main(args: Array<String>) {
     val linesOfData = readFile()
     val program = Program.createFrom(linesOfData)
-    program.execute(0)
+    var registers = program.execute(0)
 
-
+    println(registers)
     println("finished")
 }
 
 class Program(private val instructionPointerRegister:Int, private val listOfOpCodes:List<OpCode>  ) {
 
 
-    fun execute(instructionPointer:Int) {
+    fun execute(instructionPointer:Int):List<Int> {
 
-        tailrec fun execute(instructionPointer:Int, listOfRegisters:List<Int>) {
+        tailrec fun execute(instructionPointer:Int, listOfRegisters:List<Int>):List<Int> {
 
-            if (instructionPointer > listOfOpCodes.size -1) return
+            if (instructionPointer > listOfOpCodes.size -1) return listOfRegisters
 
-            val registersWithIPupdated = listOfRegisters.toMutableList()
-            registersWithIPupdated[instructionPointerRegister] = instructionPointer
+            val registersWithIPUpdated = listOfRegisters.toMutableList()
+            registersWithIPUpdated[instructionPointerRegister] = instructionPointer
 
             val opCode = listOfOpCodes[instructionPointer]
-            val updatedRegisters =  opCode.executeFunction(registersWithIPupdated)
+            val updatedRegisters =  opCode.executeFunction(registersWithIPUpdated)
 
-            println("ip=$instructionPointer $registersWithIPupdated $opCode $updatedRegisters ")
+            //println("ip=$instructionPointer $registersWithIPUpdated $opCode $updatedRegisters ")
             return execute(updatedRegisters[instructionPointerRegister] + 1, updatedRegisters)
         }
         //part1
         //execute(instructionPointer, listOf(0,0,0,0,0,0))
 
         //part2
-        execute(instructionPointer, listOf(1,0,0,0,0,0))
+        return execute(instructionPointer, listOf(1,0,0,0,0,0))
     }
 
     companion object {
@@ -111,12 +111,12 @@ class OpCode(private val description:String, private val number:Int, private val
             result[C] =  registers[A].or(B)
             return result
         }
-        val setr = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+        val setr = fun(A:Int, _:Int, C:Int, registers: List<Int>):List<Int>{
             val result = registers.toMutableList()
             result[C] =  registers[A]
             return result
         }
-        val seti = fun(A:Int, B:Int, C:Int, registers: List<Int>):List<Int>{
+        val seti = fun(A:Int, _:Int, C:Int, registers: List<Int>):List<Int>{
             val result = registers.toMutableList()
             result[C] =  A
             return result
