@@ -7,9 +7,10 @@ fun main(args: Array<String>) {
 
     val finalNodes = mutableListOf<Node>()
     val mapOfBase = hashMapOf<Vector, String>()
+    val mapOfDistance:HashMap<Vector, Int> = hashMapOf<Vector, Int>()
     mapOfBase[Vector(0,0)] = "X"
 
-    processData(firstDataItem, Node(null,0,Vector(0,0)), finalNodes, mapOfBase)
+    processData(firstDataItem, Node(null,0,Vector(0,0)), finalNodes, mapOfBase, mapOfDistance)
 
     val locationAtEndOfLongsetRoute = finalNodes.sortedBy { it.noOfParents }.last().position
     val routesGoingToLocation = finalNodes.filter{it.position == locationAtEndOfLongsetRoute}
@@ -17,13 +18,16 @@ fun main(args: Array<String>) {
 
     println("Shortest no of doors to location on longest routes ${shortestRouteToLocation.noOfParents}. Location is ${shortestRouteToLocation.position}")
 
+    //for part2. I think this maybe hard to solve as it would require going through all the loops on branches with |)
+    val noOfRoomsRequiring1000orMoreDoors = mapOfDistance.filterValues { it >= 1000 }
+
     val output = mapOfBase.print("#")
     val testPassed = checkOutput(output,"/Users/michaelneilens/day20-test2-result.txt")
 
     println("finished. Result is: $testPassed ")
 }
 
-fun processData(initialData:DataItem?, initialNode:Node, finalNodes:MutableList<Node>, mapOfBase:HashMap<Vector, String>) {
+fun processData(initialData:DataItem?, initialNode:Node, finalNodes:MutableList<Node>, mapOfBase:HashMap<Vector, String>, mapOfDistance:HashMap<Vector, Int>) {
 
     var data = initialData
     var node = initialNode
@@ -40,14 +44,18 @@ fun processData(initialData:DataItem?, initialNode:Node, finalNodes:MutableList<
                 mapOfBase[doorPosition + head.wall1] = "#"
                 mapOfBase[doorPosition + head.wall2] = "#"
                 mapOfBase[newPosition] = "."
+
                 node = Node(node, node.noOfParents + 1, newPosition)
                 data = tail
+
+                val currentShortestDistance = mapOfDistance[newPosition] ?: 99999
+                if (node.noOfParents < currentShortestDistance) mapOfDistance[newPosition] = node.noOfParents
             }
             Route.Branch -> {
                 val branches = getBranches(data)
                 branches.forEach{dataSet ->
                     if (dataSet != null) {
-                        processData(dataSet, node, finalNodes, mapOfBase)
+                        processData(dataSet, node, finalNodes, mapOfBase, mapOfDistance)
                     }
                 }
                 return
@@ -63,7 +71,7 @@ fun HashMap<Vector,String>.print(unkownSquare:String):List<String> {
     val maxX = this.keys.sortedBy { it.x }.last().x
     val minY = this.keys.sortedBy { it.y }.first().y
     val maxY = this.keys.sortedBy { it.y }.last().y
-    var output= mutableListOf<String>()
+    val output= mutableListOf<String>()
 
     (minY..maxY).forEach{y ->
         var line = ""
@@ -76,7 +84,9 @@ fun HashMap<Vector,String>.print(unkownSquare:String):List<String> {
     return output
 }
 
-class Node(val parent:Node?, val noOfParents:Int,val  position:Vector)
+class Node(val parent:Node?, val noOfParents:Int,val  position:Vector) {
+
+}
 
 class Vector (val x:Int, val y:Int) {
     override fun toString(): String {
@@ -119,15 +129,15 @@ fun getBranches(data:DataItem):List<DataItem?> {
 
     val blocks = getBlocks(dataBetweenBraces, listOf(), null,null,0)
 
-    //This is annoying as the  problem implies you need to look at every branch but any branches with a |) which you don't have to checkout to solve the problem.
+    /* This is annoying as the  problem implies you need to look at every branch but any branches with a |) which you don't have to check to solve the problem. */
      if (blocks.last()==null) return listOf(remainingData)
      else return blocks
 
     //val blocksWithRemainingDataAppended = appendBranchesToRemainingData(blocks,remainingData)
-
     //return blocksWithRemainingDataAppended
 }
 
+//This is only useful if you want to draw an accurate map. Otherwise it creates loads more pointless routes to explore.
 fun appendBranchesToRemainingData(branches:List<DataItem?>, remainingData:DataItem?):List<DataItem?> {
     if (remainingData == null) {
         return branches

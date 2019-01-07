@@ -2,25 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7746ae9-ac74-457a-ae21-a81416d36d7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day16/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day16/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day19/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/Program$execute$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/Program$execute$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day20/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$getLast$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Route.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Vector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Vector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -103,7 +99,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546898713234" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546902896493" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -198,6 +194,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
