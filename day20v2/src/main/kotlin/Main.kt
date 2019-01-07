@@ -18,8 +18,8 @@ fun main(args: Array<String>) {
 
     println("Shortest no of doors to location on longest routes ${shortestRouteToLocation.noOfParents}. Location is ${shortestRouteToLocation.position}")
 
-    //for part2. I think this maybe hard to solve as it would require going through all the loops on branches with |)
-    val noOfRoomsRequiring1000orMoreDoors = mapOfDistance.filterValues { it >= 1000 }
+    val noOfRoomsRequiring1000orMoreDoors = mapOfDistance.filterValues { it >= 1000 }.size
+    println("Rooms requireing at least 1000 doors to reach = $noOfRoomsRequiring1000orMoreDoors")
 
     val output = mapOfBase.print("#")
     val testPassed = checkOutput(output,"/Users/michaelneilens/day20-test2-result.txt")
@@ -130,7 +130,7 @@ fun getBranches(data:DataItem):List<DataItem?> {
     val blocks = getBlocks(dataBetweenBraces, listOf(), null,null,0)
 
     /* This is annoying as the  problem implies you need to look at every branch but any branches with a |) which you don't have to check to solve the problem. */
-     if (blocks.last()==null) return listOf(remainingData)
+     if (blocks.last()==null) return listOf(remainingData) // or blocks + remainingData for part 2
      else return blocks
 
     //val blocksWithRemainingDataAppended = appendBranchesToRemainingData(blocks,remainingData)
