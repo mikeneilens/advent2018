@@ -24,14 +24,14 @@ class Program(private val instructionPointerRegister:Int, private val listOfOpCo
             val opCode = listOfOpCodes[instructionPointer]
             val updatedRegisters =  opCode.executeFunction(registersWithIPUpdated)
 
-            //println("ip=$instructionPointer $registersWithIPUpdated $opCode $updatedRegisters ")
+            println("ip=$instructionPointer $registersWithIPUpdated $opCode $updatedRegisters ")
             return execute(updatedRegisters[instructionPointerRegister] + 1, updatedRegisters)
         }
-        //part1
-        //execute(instructionPointer, listOf(0,0,0,0,0,0))
+//        part1
+//        execute(instructionPointer, listOf(0,0,0,0,0,0))
 
-        //part2
-        return execute(instructionPointer, listOf(1,0,0,0,0,0))
+//        part2
+//        return execute(instructionPointer, listOf(1,0,0,0,0,0))
     }
 
     companion object {
@@ -157,7 +157,7 @@ class OpCode(private val description:String, private val number:Int, private val
 
 fun readFile():List<String> {
     val lineList = mutableListOf<String>()
-    File("/Users/michaelneilens/day19" + ".txt").useLines { lines -> lines.forEach { lineList.add(it) }}
+    File("/Users/michaelneilens/day19-test" + ".txt").useLines { lines -> lines.forEach { lineList.add(it) }}
     return lineList
 }
 

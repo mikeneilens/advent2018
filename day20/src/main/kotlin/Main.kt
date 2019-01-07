@@ -1,7 +1,7 @@
 import java.io.File
 
 fun main(args: Array<String>) {
-    val data=readFile("/Users/michaelneilens/day20-test2.txt")[0].replace("$","").replace("^","").toCharArray().map{it.toString()}
+    val data=readFile("/Users/michaelneilens/day20.txt")[0].replace("$","").replace("^","").toCharArray().map{it.toString()}
 
     val finalNodes = mutableListOf<Node>()
     val mapOfBase = hashMapOf<Vector, String>()
@@ -115,9 +115,12 @@ fun getBranches(data:List<String>):List<List<String>> {
     val remainingData = dataBetweenBranchesAndAfter.second
 
     val blocks = getBlocks(dataBetweenBraces, listOf(), listOf(),0)
-    val blocksWithRemainingDataAppended = blocks.map{it + remainingData}
-
-    return blocksWithRemainingDataAppended
+    if (blocks.last() != null ) {
+        val blocksWithRemainingDataAppended = blocks.map{it + remainingData}
+        return blocksWithRemainingDataAppended
+    } else {
+        return listOf(remainingData)
+    }
 }
 
 fun getDataBetweenBracesAndAfter(data:List<String>):Pair<List<String>,List<String>> {

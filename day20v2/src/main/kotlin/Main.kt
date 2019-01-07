@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
     println("Shortest no of doors to location on longest routes ${shortestRouteToLocation.noOfParents}. Location is ${shortestRouteToLocation.position}")
 
     val output = mapOfBase.print("#")
-    val testPassed = checkOutput(output,"/Users/michaelneilens/day20-test4-result.txt")
+    val testPassed = checkOutput(output,"/Users/michaelneilens/day20-test2-result.txt")
 
     println("finished. Result is: $testPassed ")
 }
@@ -36,10 +36,10 @@ fun processData(initialData:DataItem?, initialNode:Node, finalNodes:MutableList<
             Route.North, Route.South, Route.East, Route.West -> {
                 val doorPosition = node.position + head.move
                 val newPosition = doorPosition + head.move
-//                mapOfBase[doorPosition ] = head.image
-//                mapOfBase[doorPosition + head.wall1] = "#"
-//                mapOfBase[doorPosition + head.wall2] = "#"
-//                mapOfBase[newPosition] = "."
+                mapOfBase[doorPosition ] = head.image
+                mapOfBase[doorPosition + head.wall1] = "#"
+                mapOfBase[doorPosition + head.wall2] = "#"
+                mapOfBase[newPosition] = "."
                 node = Node(node, node.noOfParents + 1, newPosition)
                 data = tail
             }
@@ -119,15 +119,28 @@ fun getBranches(data:DataItem):List<DataItem?> {
 
     val blocks = getBlocks(dataBetweenBraces, listOf(), null,null,0)
 
-    val blocksWithRemainingDataAppended = blocks.map{ block ->
-        if (block == null) remainingData
-        else {
-            block.getLast()?.append( remainingData)
-            block
-        }
-    }
+    //This is annoying as the  problem implies you need to look at every branch but any branches with a |) which you don't have to checkout to solve the problem.
+     if (blocks.last()==null) return listOf(remainingData)
+     else return blocks
 
-    return blocksWithRemainingDataAppended
+    //val blocksWithRemainingDataAppended = appendBranchesToRemainingData(blocks,remainingData)
+
+    //return blocksWithRemainingDataAppended
+}
+
+fun appendBranchesToRemainingData(branches:List<DataItem?>, remainingData:DataItem?):List<DataItem?> {
+    if (remainingData == null) {
+        return branches
+    } else {
+        val blocksWithRemainingDataAppended = branches.map{ branch ->
+            if (branch == null) remainingData
+            else {
+                branch.getLast()?.append( remainingData)
+                branch
+            }
+        }
+        return blocksWithRemainingDataAppended
+    }
 }
 
 
@@ -194,20 +207,10 @@ class DataItem(val value:String, private var child:DataItem?, var root:DataItem?
     }
 
     fun getLast():DataItem? {
-        tailrec fun getLast(dataItem:DataItem?):DataItem? {
-            return if (dataItem == null) dataItem
-            else
-                if (dataItem.child == null) dataItem
-                else getLast(dataItem.child)
-        }
-        val last = getLast(this)
-        if (last != root?.final) {
-            println("what!")
-        }
-        return last
+        return root?.final
     }
     fun add(newValue:String):DataItem {
-        var dataItem =   DataItem(newValue, null, this.root,null)
+        val dataItem =   DataItem(newValue, null, this.root,null)
         this.child = dataItem
         this.root?.final = dataItem
         return dataItem

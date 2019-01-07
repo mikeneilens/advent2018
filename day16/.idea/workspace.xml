@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61400a0d-8783-458e-9377-71be2d3115e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day19/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day18/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day18/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day21/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day21/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$getLast$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -26,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2400">
-              <caret line="160" column="5" selection-end-line="200" />
+            <state relative-caret-position="1860">
+              <caret line="124" column="76" lean-forward="true" selection-start-line="124" selection-start-column="76" selection-end-line="124" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -63,7 +71,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="900" />
@@ -75,6 +83,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,7 +106,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -195,9 +203,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10486111" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1046875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -230,8 +239,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="160" column="5" selection-end-line="200" />
+        <state relative-caret-position="1860">
+          <caret line="124" column="76" lean-forward="true" selection-start-line="124" selection-start-column="76" selection-end-line="124" selection-end-column="76" />
         </state>
       </provider>
     </entry>

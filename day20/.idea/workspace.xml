@@ -2,27 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f483fcd-a593-401c-819f-6fb6c79fd777" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day21/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day21/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day16/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day16/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/Program$execute$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/Program$execute$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/out/production/classes/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/out/production/classes/Program.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day19/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Route.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Vector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Vector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$getLast$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -39,12 +37,12 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+            <state relative-caret-position="37">
+              <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -87,7 +85,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,11 +108,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546813441811" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546898010250" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -208,37 +206,37 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Build" weight="0.3293124" />
-      <window_info anchor="bottom" id="Messages" weight="0.328807" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.26479146" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3986421" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3986421" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="10" weight="0.3293124" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.328807" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -251,8 +249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+        <state relative-caret-position="37">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
         </state>
       </provider>
     </entry>
