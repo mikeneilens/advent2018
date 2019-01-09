@@ -2,7 +2,7 @@ import java.io.File
 
 val mapLetters = mapOf(Pair("A",1),Pair("B",2),Pair("C",3),Pair("D",4),Pair("E",5),Pair("F",6),Pair("G",7),Pair("H",8),Pair("I",9),
     Pair("J",10),Pair("K",11),Pair("L",12),Pair("M",13),Pair("N",14),Pair("O",15),Pair("P",16),Pair("Q",17),Pair("R",18),
-    Pair("S",19),Pair("T",20),Pair("U",21),Pair("V",22),Pair("W",23),Pair("X",24),Pair("Y",25),Pair("Y",26))
+    Pair("S",19),Pair("T",20),Pair("U",21),Pair("V",22),Pair("W",23),Pair("X",24),Pair("Y",25),Pair("Z",26))
 
 fun main(args: Array<String>) {
     val listOfInstructions = readFile()
@@ -23,14 +23,14 @@ fun main(args: Array<String>) {
     while (!listOfAllSteps.allStepsComplete()) {
         workers.assignStepToIdleWorkers(listOfAllSteps)
 
-        workers.print(minutes)
+        workers.print(minutes, completed)
 
         workers.forEach { worker ->
-            worker.doWork(listOfAllSteps)
+            completed = worker.doWork(listOfAllSteps, completed)
         }
         minutes +=1
     }
-    println("Minutes taken = $minutes")
+    println("Minutes taken = $minutes, $completed ")
 }
 
 class Step(val id:String, var dependencies:List<String>, var timeleft:Int = 60, var worker:Int ) {
@@ -43,11 +43,11 @@ class Step(val id:String, var dependencies:List<String>, var timeleft:Int = 60, 
     }
 
     override fun toString(): String {
-        return "$id dependencies:$dependencies timeleft:$timeleft"
+        return "$id dependencies:$dependencies dependencies:${dependencies.size} timeleft:$timeleft"
     }
 
     fun removeDependency(id:String) {
-        fun removeDependency(id:String, dependencies: List<String>, newDependencies:List<String>):List<String> {
+        tailrec fun removeDependency(id:String, dependencies: List<String>, newDependencies:List<String>):List<String> {
             if (dependencies.isEmpty()) return newDependencies
             val head = dependencies.first()
             val tail = dependencies.drop(1)
@@ -70,25 +70,6 @@ fun List<Step>.removeDependency(id:String){
     }
 }
 
-class Worker(val id:Int, var currentStep:Step?) {
-
-
-    fun doWork(listOfSteps:List<Step>) {
-        val step = currentStep
-        if (step != null) {
-            step.timeleft -= 1
-            if (step.timeleft == 0) {
-                currentStep = null
-                listOfSteps.removeDependency(step.id)
-            }
-        }
-    }
-
-    override fun toString(): String {
-        return "Worker $id current step:$currentStep"
-    }
-}
-
 fun List<Step>.findNextStep():Step? {
     this.sortedBy { it.id }.forEach {step ->
         if (step.dependencies.isEmpty() && step.timeleft > 0 && step.worker==0) {
@@ -97,6 +78,31 @@ fun List<Step>.findNextStep():Step? {
     }
     return null
 }
+fun List<Step>.allStepsComplete():Boolean {
+    return this.filter { it.timeleft > 0 }.isEmpty()
+}
+
+class Worker(val id:Int, var currentStep:Step?) {
+
+    fun doWork(listOfSteps:List<Step>, completed:String):String {
+        var completed = completed
+        val step = currentStep
+        if (step != null) {
+            step.timeleft -= 1
+            if (step.timeleft == 0) {
+                completed += step.id
+                currentStep = null
+                listOfSteps.removeDependency(step.id)
+            }
+        }
+        return completed
+    }
+
+    override fun toString(): String {
+        return "Worker $id current step:$currentStep (${currentStep?.timeleft})"
+    }
+}
+
 fun List<Worker>.assignStepToIdleWorkers(listOfSteps:List<Step>) {
     this.filter { it.currentStep == null }.forEach { idleWorker ->
         val nextStep = listOfSteps.findNextStep()
@@ -104,36 +110,14 @@ fun List<Worker>.assignStepToIdleWorkers(listOfSteps:List<Step>) {
         idleWorker.currentStep = nextStep
     }
 }
-fun List<Worker>.print(minute:Int) {
+fun List<Worker>.print(minute:Int, complete:String) {
 
     var line = "$minute "
     this.forEach { worker ->
-        line += worker.currentStep?.id ?: " "
+        line += (worker.currentStep?.id ?: " ") + "(${worker.currentStep?.timeleft})"
         line += "   "
     }
-    println(line)
-}
-
-
-fun List<Step>.allStepsComplete():Boolean {
-    return this.filter { it.timeleft > 0 }.isEmpty()
-}
-
-fun takeStep(id:String, listOfSteps:List<Step>):List<Step> {
-
-    var newListOfSteps= listOf<Step>()
-    listOfSteps.forEach{ step ->
-        if (step.id != id) {
-            var listOfDependencies = listOf<String>()
-            step.dependencies.forEach{dependency ->
-                if (dependency != id) {
-                    listOfDependencies += dependency
-                }
-            }
-            newListOfSteps += Step.create(step.id, listOfDependencies)
-        }
-    }
-    return newListOfSteps
+    println("$line $complete")
 }
 
 fun createSteps(listOfInstructions:List<String>, listOfSteps:List<Step>):List<Step> {

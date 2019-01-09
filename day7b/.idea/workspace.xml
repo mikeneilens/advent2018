@@ -2,40 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c1134cf-b026-4d4f-9943-9276a14d1cea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$addi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$addi$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$addr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$addr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$bani$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$bani$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$banr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$banr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$bori$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$bori$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$borr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$borr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqir$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqir$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqri$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqri$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqrr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$eqrr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtir$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtir$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtri$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtri$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtrr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$gtrr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$muli$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$muli$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$mulr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$mulr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$seti$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$seti$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$setr$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion$setr$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/OpCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/OpCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/Program$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/Program$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/Program$execute$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/Program$execute$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/out/production/classes/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/out/production/classes/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day21/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day21/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt$main$$inlined$sortedBy$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt$processSteps$$inlined$sortedBy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Step.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Step.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -57,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="82" column="13" lean-forward="true" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+            <state relative-caret-position="359">
+              <caret line="119" column="30" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -112,7 +78,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547075796640" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547077355409" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -244,8 +210,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="13" lean-forward="true" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+        <state relative-caret-position="359">
+          <caret line="119" column="30" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
         </state>
       </provider>
     </entry>
