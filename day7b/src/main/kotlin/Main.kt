@@ -33,17 +33,17 @@ fun main(args: Array<String>) {
     println("Minutes taken = $minutes, $completed ")
 }
 
-class Step(val id:String, var dependencies:List<String>, var timeleft:Int = 60, var worker:Int ) {
+class Step(val id:String, var dependencies:List<String>, var timeLeft:Int = 60, var worker:Int ) {
 
     companion object {
-        val minTime = 60
+        private const val minTime = 60
         fun create(id:String, dependencies:List<String>):Step {
             return Step(id, dependencies, minTime + (mapLetters[id] ?: 0),0)
         }
     }
 
     override fun toString(): String {
-        return "$id dependencies:$dependencies dependencies:${dependencies.size} timeleft:$timeleft"
+        return "$id dependencies:$dependencies dependencies:${dependencies.size} time left:$timeLeft"
     }
 
     fun removeDependency(id:String) {
@@ -51,10 +51,10 @@ class Step(val id:String, var dependencies:List<String>, var timeleft:Int = 60, 
             if (dependencies.isEmpty()) return newDependencies
             val head = dependencies.first()
             val tail = dependencies.drop(1)
-            if (head == id) {
-                return removeDependency(id, tail, newDependencies)
+            return if (head == id) {
+                removeDependency(id, tail, newDependencies)
             }  else {
-                return removeDependency(id, tail, newDependencies + head)
+                removeDependency(id, tail, newDependencies + head)
             }
         }
         dependencies = removeDependency(id, this.dependencies, listOf())
@@ -72,34 +72,34 @@ fun List<Step>.removeDependency(id:String){
 
 fun List<Step>.findNextStep():Step? {
     this.sortedBy { it.id }.forEach {step ->
-        if (step.dependencies.isEmpty() && step.timeleft > 0 && step.worker==0) {
+        if (step.dependencies.isEmpty() && step.timeLeft > 0 && step.worker==0) {
             return step
         }
     }
     return null
 }
 fun List<Step>.allStepsComplete():Boolean {
-    return this.filter { it.timeleft > 0 }.isEmpty()
+    return this.none { it.timeLeft > 0 }
 }
 
 class Worker(val id:Int, var currentStep:Step?) {
 
     fun doWork(listOfSteps:List<Step>, completed:String):String {
-        var completed = completed
+        var complete = completed
         val step = currentStep
         if (step != null) {
-            step.timeleft -= 1
-            if (step.timeleft == 0) {
-                completed += step.id
+            step.timeLeft -= 1
+            if (step.timeLeft == 0) {
+                complete += step.id
                 currentStep = null
                 listOfSteps.removeDependency(step.id)
             }
         }
-        return completed
+        return complete
     }
 
     override fun toString(): String {
-        return "Worker $id current step:$currentStep (${currentStep?.timeleft})"
+        return "Worker $id current step:$currentStep (${currentStep?.timeLeft})"
     }
 }
 
@@ -114,7 +114,7 @@ fun List<Worker>.print(minute:Int, complete:String) {
 
     var line = "$minute "
     this.forEach { worker ->
-        line += (worker.currentStep?.id ?: " ") + "(${worker.currentStep?.timeleft})"
+        line += (worker.currentStep?.id ?: " ") + "(${worker.currentStep?.timeLeft})"
         line += "   "
     }
     println("$line $complete")
