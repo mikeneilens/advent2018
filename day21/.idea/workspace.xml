@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7746ae9-ac74-457a-ae21-a81416d36d7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$append$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem$toString$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/DataItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt$print$$inlined$sortedBy$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Route.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/out/production/classes/Vector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/out/production/classes/Vector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../day20v2/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -36,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="474">
+              <caret line="53" column="62" lean-forward="true" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -98,7 +86,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546903450835" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546975201247" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -208,7 +196,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.3297769" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297769" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3297769" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -227,8 +215,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="474">
+          <caret line="53" column="62" lean-forward="true" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
         </state>
       </provider>
     </entry>

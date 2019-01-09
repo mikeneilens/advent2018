@@ -14,33 +14,47 @@ class Program(private val instructionPointerRegister:Int, private val listOfOpCo
 
     fun execute(instructionPointer: Int): List<Int> {
 
-        tailrec fun execute(instructionPointer: Int, listOfRegisters: List<Int>, instructionHistory:MutableList<Int>): List<Int> {
+        var registersFound = 0
+        var bestRegister = listOf<Int>(0,0,0,0,999999999,0)
+        var bestInstructionsExectured = 0
+        var bestRegister2 = listOf<Int>(0,0,0,0,999999999,0)
+        var instructionExecuted = MutableList(listOfOpCodes.size){false}
 
+        tailrec fun execute(instructionPointer: Int, listOfRegisters: List<Int>): List<Int> {
+
+            instructionExecuted[instructionPointer] = true
             if (instructionPointer > listOfOpCodes.size - 1) return listOfRegisters
 
-            if (instructionHistory[instructionPointer] > 0) {
-                println("failed")
-                return listOfRegisters
+            if (instructionPointer == 28) {
+                if (listOfRegisters[4] < bestRegister[4]) {
+                    bestRegister = listOfRegisters
+                    registersFound += 1
+//                    println("new best $bestRegister $registersFound")
+                    if (registersFound > 10000) return bestRegister
+                }
+                if (instructionExecuted.filter { it == true }.size >= bestInstructionsExectured) {
+                    bestInstructionsExectured = instructionExecuted.filter { it == true }.size
+                    if (listOfRegisters[4] < bestRegister2[4]) {
+                        bestRegister2 = listOfRegisters
+                        println("new best part2 $bestRegister2 $bestInstructionsExectured")
+                    }
+                }
             }
-            instructionHistory[instructionPointer] = 1
-
             val registersWithIPUpdated = listOfRegisters.toMutableList()
             registersWithIPUpdated[instructionPointerRegister] = instructionPointer
 
             val opCode = listOfOpCodes[instructionPointer]
             val updatedRegisters = opCode.executeFunction(registersWithIPUpdated)
 
-            println("ip=$instructionPointer $registersWithIPUpdated $opCode $updatedRegisters ")
-            return execute(updatedRegisters[instructionPointerRegister] + 1, updatedRegisters, instructionHistory)
+//            println("ip=$instructionPointer $registersWithIPUpdated $opCode $updatedRegisters ")
+            return execute(updatedRegisters[instructionPointerRegister] + 1, updatedRegisters)
 
         }
 
-        (0..10).forEach { register0 ->
-            val pair =  execute(instructionPointer, listOf( register0,0, 0, 0, 0, 0), MutableList(listOfOpCodes.size){0})
-            println()
-        }
+        val registers = execute(instructionPointer, listOf( 0,0, 0, 0, 0, 0))
 
-        return execute(instructionPointer, listOf( 1,0, 0, 0, 0, 0), MutableList(listOfOpCodes.size){0})
+        return execute(instructionPointer, listOf( registers[0],0, 0, 0, 0, 0))
+        //return execute(instructionPointer, listOf( 1,0, 0, 0, 0, 0))
     }
 
     companion object {
