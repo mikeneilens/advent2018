@@ -10,11 +10,11 @@ fun main(args: Array<String>) {
     val listOfSteps = createSteps(listOfInstructionsSorted, listOf())
     val listOfAllSteps = addStepsWithNoDependencies(listOfInstructionsSorted,listOfSteps)
 
-    val worker1 = Worker(1,null)
-    val worker2 = Worker(2,null)
-    val worker3 = Worker(3,null)
-    val worker4 = Worker(4,null)
-    val worker5 = Worker(5,null)
+    val worker1 = Worker(1,WorkStatus.Idle)
+    val worker2 = Worker(2,WorkStatus.Idle)
+    val worker3 = Worker(3,WorkStatus.Idle)
+    val worker4 = Worker(4,WorkStatus.Idle)
+    val worker5 = Worker(5,WorkStatus.Idle)
 
     val workers = listOf(worker1, worker2, worker3, worker4, worker5)
 
@@ -33,12 +33,12 @@ fun main(args: Array<String>) {
     println("Minutes taken = $minutes, $completed ")
 }
 
-class Step(val id:String, var dependencies:List<String>, var timeLeft:Int = 60, var worker:Int ) {
+class Step(val id:String, var dependencies:List<String>, var timeLeft:Int = 60, var waitingToBeProcessed:Boolean = true ) {
 
     companion object {
         private const val minTime = 60
         fun create(id:String, dependencies:List<String>):Step {
-            return Step(id, dependencies, minTime + (mapLetters[id] ?: 0),0)
+            return Step(id, dependencies, minTime + (mapLetters[id] ?: 0),true)
         }
     }
 
@@ -50,18 +50,13 @@ class Step(val id:String, var dependencies:List<String>, var timeLeft:Int = 60, 
         tailrec fun removeDependency(id:String, dependencies: List<String>, newDependencies:List<String>):List<String> {
             if (dependencies.isEmpty()) return newDependencies
             val head = dependencies.first()
-            val tail = dependencies.drop(1)
             return if (head == id) {
-                removeDependency(id, tail, newDependencies)
+                removeDependency(id, dependencies.drop(1), newDependencies)
             }  else {
-                removeDependency(id, tail, newDependencies + head)
+                removeDependency(id, dependencies.drop(1), newDependencies + head)
             }
         }
         dependencies = removeDependency(id, this.dependencies, listOf())
-    }
-    fun assignTo(worker:Worker) {
-        this.worker = worker.id
-        worker.currentStep = this
     }
 }
 fun List<Step>.removeDependency(id:String){
@@ -72,7 +67,7 @@ fun List<Step>.removeDependency(id:String){
 
 fun List<Step>.findNextStep():Step? {
     this.sortedBy { it.id }.forEach {step ->
-        if (step.dependencies.isEmpty() && step.timeLeft > 0 && step.worker==0) {
+        if (step.dependencies.isEmpty() && step.timeLeft > 0 && step.waitingToBeProcessed) {
             return step
         }
     }
@@ -82,39 +77,56 @@ fun List<Step>.allStepsComplete():Boolean {
     return this.none { it.timeLeft > 0 }
 }
 
-class Worker(val id:Int, var currentStep:Step?) {
+class Worker(private val id:Int, var workStatus:WorkStatus) {
 
     fun doWork(listOfSteps:List<Step>, completed:String):String {
-        var complete = completed
-        val step = currentStep
-        if (step != null) {
-            step.timeLeft -= 1
-            if (step.timeLeft == 0) {
-                complete += step.id
-                currentStep = null
-                listOfSteps.removeDependency(step.id)
-            }
-        }
-        return complete
+
+        return  if (workStatus is WorkStatus.Working) {
+                    val step = (workStatus as WorkStatus.Working).step
+                    step.timeLeft -= 1
+                    if (step.timeLeft == 0) {
+                        workStatus = WorkStatus.Idle
+                        listOfSteps.removeDependency(step.id)
+                        completed + step.id
+                    } else {
+                        completed
+                    }
+                } else {
+                    completed
+                }
     }
 
-    override fun toString(): String {
-        return "Worker $id current step:$currentStep (${currentStep?.timeLeft})"
+    override fun toString(): String =
+        if (workStatus is WorkStatus.Working) {
+            "Worker $id $workStatus"
+        } else "Worker $id Idle "
+
+}
+
+sealed class WorkStatus {
+    object Idle : WorkStatus()
+    class Working(val step:Step):WorkStatus()
+
+    override fun toString():String = when(this) {
+        is WorkStatus.Idle ->  "Idle"
+        is WorkStatus.Working ->  "${step.id} (${step.timeLeft})"
     }
 }
 
 fun List<Worker>.assignStepToIdleWorkers(listOfSteps:List<Step>) {
-    this.filter { it.currentStep == null }.forEach { idleWorker ->
+    this.filter { it.workStatus is WorkStatus.Idle }.forEach { idleWorker ->
         val nextStep = listOfSteps.findNextStep()
-        nextStep?.assignTo(idleWorker)
-        idleWorker.currentStep = nextStep
+        if (nextStep != null) {
+            nextStep.waitingToBeProcessed = false
+            idleWorker.workStatus = WorkStatus.Working(nextStep)
+        }
     }
 }
 fun List<Worker>.print(minute:Int, complete:String) {
 
     var line = "$minute "
     this.forEach { worker ->
-        line += (worker.currentStep?.id ?: " ") + "(${worker.currentStep?.timeLeft})"
+        line += worker.toString()
         line += "   "
     }
     println("$line $complete")
