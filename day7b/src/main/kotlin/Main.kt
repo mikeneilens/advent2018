@@ -96,11 +96,7 @@ class Worker(private val id:Int, var workStatus:WorkStatus) {
                 }
     }
 
-    override fun toString(): String =
-        if (workStatus is WorkStatus.Working) {
-            "Worker $id $workStatus"
-        } else "Worker $id Idle "
-
+    override fun toString(): String = "Worker $id $workStatus"
 }
 
 sealed class WorkStatus {
@@ -109,7 +105,7 @@ sealed class WorkStatus {
 
     override fun toString():String = when(this) {
         is WorkStatus.Idle ->  "Idle"
-        is WorkStatus.Working ->  "${step.id} (${step.timeLeft})"
+        is WorkStatus.Working ->  "${step.id}(${step.timeLeft})"
     }
 }
 
@@ -122,8 +118,8 @@ fun List<Worker>.assignStepToIdleWorkers(listOfSteps:List<Step>) {
         }
     }
 }
-fun List<Worker>.print(minute:Int, complete:String) {
 
+fun List<Worker>.print(minute:Int, complete:String) {
     var line = "$minute "
     this.forEach { worker ->
         line += worker.toString()
